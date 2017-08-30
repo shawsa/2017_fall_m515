@@ -17,11 +17,11 @@
 	
 	\begin{flushright}
 		Sage Shaw \\
-		m527 - Fall 2017 \\
-		Aug. 30, 2017
+		m515 - Fall 2017 \\
+		Sep. 1, 2017
 	\end{flushright}
 	
-	{\large \textbf{HW1: 1.1-3, 2.1-2}}\bigbreak
+	{\large \textbf{HW 1: 1.1-3, 2.1-2}}\bigbreak
 
 	\hspace{-4 ex}\textbf{1.1} Show that the properties (a)--(c) of a measure imply finite addivitity: If $A$ and $B$ are disjoint then $m(A\cup B)=m(A)+m(B)$.
 	
@@ -87,7 +87,7 @@
 	
 	Given elementary sets $A$ and $B$: \bigbreak
 	
-	(a) $A \cup B$ is an elementary set.
+	\hspace{-4 ex}\textbf{(a)} $A \cup B$ is an elementary set.
 	
 	
 	\begin{proof}
@@ -98,7 +98,7 @@
 		Therefore $A \cup B$ is an elementary set.
 	\end{proof}
 
-	(b) $A \cap B$ is an elementary set. \bigbreak
+	\hspace{-4 ex}\textbf{(b)} $A \cap B$ is an elementary set. \bigbreak
 	
 	\textbf{Lemma:} the intersection of two intervals is an interval.
 	
@@ -137,7 +137,101 @@
 		Let $x \in \bigcup\limits_{(n,m)=(1,1)}^{(N,M)}(A_{n} \cap B_{m})$. \\
 		Then $x \in A_{n}$ and $x \in B_{n}$ for some $n \in \{1,...,N\}$ and $m \in \{1,...,M\}$. \\
 		Thus $x \in A \cap B$. \bigbreak
-		Since  $A \cap B = \bigcup\limits_{(n,m)=(1,1)}^{(N,M)}(A_{n} \cap B_{m})$, we can say that the intersection of two elementary sets is an elementary set, by the above lemma.
+		Since  $A \cap B = \bigcup\limits_{(n,m)=(1,1)}^{(N,M)}(A_{n} \cap B_{m})$, we can say that the intersection of two elementary sets is an elementary set, by the above lemma. \\
 	\end{proof}
+
+	\hspace{-4 ex}\textbf{(c)} $A \setminus B$ is an elementary set. \bigbreak
+	
+	\textbf{Lemma:} The set difference of two intervals is a finite union of intervals.
+	
+	\begin{proof}
+		Let $[a,b]$ and $[c,d]$ be intervals. \bigbreak
+		Suppose $a \leq c$. \\
+		If $ b < c$ then clearly $[a,b] \setminus [c,d] = [a,b]$ which is an interval. \\
+		If $b=c$ then $[a,b] \setminus [c,d] = [a,b)$. \\
+		Now further suppose $ c < b$. \\
+		Then if $b \leq d$, clearly $[a,b] \setminus [c,d] = [a,c)$. \\
+		Otherwise, $ d < b$ and $[a,b] \setminus [c,d] = [a,c) \cup (d,b]$. \bigbreak
+		The cases when $c \leq a$ are similar to the above cases. \bigbreak
+		
+		The set difference of any two kinds of intervals (15 other) will be similar to the above case of the set difference of two closed intvervals, but with different inequalities. \bigbreak
+		
+		Hence, the set difference of two intervals is a finite union of intervals. \\
+	\end{proof}
+
+\textbf{Lemma:} the set difference of two boxes is a union of boxes.
+
+\begin{proof}
+	Let $A = I_{1} \times ... \times I_{d}$ and $B = J_{1} \times ... \times J_{d}$ be boxes in $\mathds{R}^{d}$. \\
+	Define 
+	\[ 
+		K_{(i,t)} =
+		\begin{cases} 
+			I_{i} \setminus J_{i} & \text{if } t=1 \\
+			I_{i} & \text{if } t=2 \\
+		\end{cases}
+	\]
+	for $i \in {1,...,d}$ and $t \in {1,2}$.\\
+	Each $K_{(i,t)}$ is a finite union of intervals by a previous lemma.\\
+	Define $\vec{v}$ as a $d$ dimensional vector such that $\vec{v}_{i} \in \{1,2\}$. ($\vec{v}$ is a $d$ dimensional vector of $1$s and $2$s.)
+	Define $P_{\vec{v}} = \prod\limits_{i=1}^{d} K_{(i,\vec{v}_{i})}$. \\
+	Since $(A \cup B) \times C = (A \times C) \cup (B \times C)$ from set theory, we can say that each $P_{\vec{v}}$ is a union of boxes. (A product of unions of intervals is a union of products of intervals). \bigbreak
+	
+	Let $P = \bigcup\limits_{\vec{u} \in V} P_{\vec{u}}$ where $V$ is the set of $d$ dimensional vectors of $1$s and $2$s except the vector of all $1$s. \\
+	since $P$ is a finite union of finite unions of boxes, it is an elementary set. It remains to show that $A \setminus B = P$. \bigbreak
+	
+	Let $\vec{x} \in A \setminus B$. \\
+	Since $\vec{x} \notin B$, there exists $i \in \{1,...,d\}$ such that $\vec{x}_{i} \notin J_{i}$. \\
+	Thus $\vec{x}_{i} \in K_{i,2}$ \\
+	For $j \in \{1,...,d\}$ where $j \neq i$ it is clear that $\vec{x}_{j}$ is either in $ K_{j,1}$ or $ K_{j,2}$. \\
+	Thus $x \in P_{\vec{v}}$ for some $\vec{v}$ that is not all $2$s, and thus $x \in P$. \bigbreak 
+	
+	Let $\vec{x} \in P$. \\
+	Then $\vec{x} \in P_{\vec{v}}$ for some $\vec{v}$ that is not all $1$s. \\
+	Then $\vec{x}_{i} \in K_{i,t}$ for all $i \in \{1,...,d\}$ and $t \in \{1,2\}$. \\
+	Clearly $\vec{x} \in A$. \\
+	Since $\vec{v}$ is not all $2$s, $\exists j \in \{1,...,d\}$ such that $\vec{x}_{j} \in K_{j,2}$, and thus $\vec{x}_{j} \notin J_{j}$. \\
+	Finally $\vec{x} \notin B$, so $\vec{x} \in A \setminus B$.	\\
+\end{proof}
+
+	Now we are able to prove that if $A$ and $B$ are elementary sets, then $A \setminus B$ is an elementary set. \\
+	
+	\begin{proof}
+		Let $A$ and $B$ be elementary sets. \\
+		Then $A = \bigcup\limits_{n=1}^{N} A_{n}$ where each $A_{n}$ is elementary. \\
+		Similarly $B = \bigcup\limits_{m=1}^{M} B_{m}$ where each $B_{m}$ is elementary. \\
+		It follows that $A \setminus B = \bigcup\limits_{n=1}^{N} A_{n} \setminus \bigcup\limits_{m=1}^{M} B_{m} = \bigcup\limits_{n=1}^{N}  \bigcup\limits_{m=1}^{M} A_{n} \setminus B_{m}$. \\
+		Since this is a finite unioin of elementary sets, $A \setminus B$ is an elementary set. \\
+	\end{proof}
+
+\hspace{-4 ex}\textbf{(d)} $A \Delta B = (A \setminus B) \cup (B \setminus A)$ is an elementary set.
+\begin{proof}
+	Let $A$ and $B$ be elementary sets. \\
+	By the previous proof, $A \setminus B$ and $B \setminus A$ are also elementary sets. \\
+	By part (a), $(A \setminus B) \cup (B \setminus A)$ is an elementary set.\\
+\end{proof}
+
+
+
+\hspace{-4 ex}\textbf{2.2}Prove the elementary measure satisfies the monotonicity and finite subadditivity properties. \bigbreak
+
+Let $A$ and $B$ be elementary sets. \bigbreak
+
+\hspace{-4 ex}\textbf{(a)} Show that if $A \subset B$ then $m(A) \leq m(B)$. \bigbreak
+
+\begin{proof}
+	Note that $(B \setminus A) \cup A = B$, since $A \subset B$. \\
+	Then $m(B \setminus A) + m(A) = m(B)$, since $A$ and $B \setminus A$ are disjoint. \\
+	Since $m(B\setminus A) \geq 0$ by definition of measure and $m(A) \leq m(B)$.\\	
+\end{proof}
+
+\hspace{-4 ex}\textbf{(b)} Show that $m(A \cup B) \leq m(A) + m(B)$. \bigbreak
+
+\begin{proof}
+	Exercise 1.2 states that for any sets $A$ and $B$, \\ $m(A\cup B)+m(A\cap B)=m(A)+m(B)$. \\
+	Then $m(A\cap B) = m(A) + m(B) - m(A\cup B)$ \\
+	By definition of measure, $0 \leq m(A \cap B)$. \\
+	So $0 \leq m(A) + m(B) - m(A\cup B)$ and finally, $m(A\cup B) \leq m(A)+m(B)$. \\
+\end{proof}
 
 \end{document}
