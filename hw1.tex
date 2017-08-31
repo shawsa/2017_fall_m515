@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 
 \usepackage{fancyhdr} 
-%\usepackage{mathtools}
+\usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{dsfont}
@@ -85,7 +85,7 @@
 \hspace{-4 ex}\textbf{1.3} Show that if there is a metric on $\mathbb{R}^{d}$ that satisfies properties (a)-(c), that there is a metric on $[0,1)$ mod $1$ that does as well. \bigbreak
 
 For $x,y \in [0,1)$ define 
-\[ x \oplus y = {
+\[ x \oplus y =
 	\begin{cases}
 	x + y & \text{if } x+y < 1 \\
 	x + y -1 & \text{if } x+y \geq 1\\
@@ -94,6 +94,38 @@ For $x,y \in [0,1)$ define
 
 Define $m_{1}:[0,1) \rightarrow \mathds{R}$ as $m_{1}(A) = m(A)$ where $m$ is a measure on $\mathbb{R}$ satisfying (a)-(c). \\
 
+\hspace{-4 ex}\textbf{(a)} Normality
+
+\begin{proof}
+	Let $I \in [0,1)$ be an interval. \\
+	Then $m_{1}(I) = m(I)$ and thus the length of the measure of the interval is it's length.\\
+\end{proof}
+
+\hspace{-4 ex}\textbf{(b)} Transitivity
+
+\begin{proof}
+	Let $x \in [0,1)$ and $ A \subseteq [0,1)$. \\
+	Define $A_{1}= A \setminus [1-x,2-x)$ and $A_{2} = A \setminus [0, 1-x)$. \\
+	Clearly $A = A_{1} \cup A_{2}$ and $A_{1} \cap A_{2} = \emptyset$. \\
+	Then 
+	\begin{align*}
+		m_{1}(x \oplus A) & = m(x \oplus A) \\
+		& = m(x \oplus A_{1} \cup x \oplus A_{2}) \\
+		& = m(x \oplus A_{1}) + m(x \oplus A_{2}) \\
+		& = m(x + A_{1}) + m( (x-1) + A_{2}) & \text{since } x \oplus A_{2} \subseteq [1,2) \\
+		& = m(A_{1}) + m(A_{2}) \\
+		& = m(A_{1} \cup A_{2}) \\
+		& = m(A) \\
+		& = m_{1}(A) \\
+	\end{align*} 
+\end{proof}
+
+\hspace{-4 ex}\textbf{(c)} Countable Additivity \\
+
+\begin{proof}
+	Let $A_{n} \subseteq [0,1)$ for $n \in \mathbb{N}$, such that all $A_{n}$ are pairwise disjoint. \\
+	Then $m_{1}\big(\bigcup\limits_{n=1}^{\infty}A_{n}\big) = m \big(\bigcup\limits_{n=1}^{\infty}A_{n}\big) = \sum\limits_{n=1}^{\infty}m(A_{n}) = \sum\limits_{n=1}^{\infty}m_{1}(A_{n})$.\\
+\end{proof}
 
 
 \bigbreak
@@ -232,10 +264,10 @@ Define $m_{1}:[0,1) \rightarrow \mathds{R}$ as $m_{1}(A) = m(A)$ where $m$ is a 
 
 Let $A$ and $B$ be elementary sets. \bigbreak
 
-\hspace{-4 ex}\textbf{(a)} Show that if $A \subset B$ then $m(A) \leq m(B)$. \bigbreak
+\hspace{-4 ex}\textbf{(a)} Show that if $A \subseteq B$ then $m(A) \leq m(B)$. \bigbreak
 
 \begin{proof}
-	Note that $(B \setminus A) \cup A = B$, since $A \subset B$. \\
+	Note that $(B \setminus A) \cup A = B$, since $A \subseteq B$. \\
 	Then $m(B \setminus A) + m(A) = m(B)$, since $A$ and $B \setminus A$ are disjoint. \\
 	Since $m(B\setminus A) \geq 0$ by definition of measure and $m(A) \leq m(B)$.\\	
 \end{proof}
