@@ -105,7 +105,7 @@ Define $m_{1}:[0,1) \rightarrow \mathds{R}$ as $m_{1}(A) = m(A)$ where $m$ is a 
 
 \begin{proof}
 	Let $x \in [0,1)$ and $ A \subseteq [0,1)$. \\
-	Define $A_{1}= A \setminus [1-x,2-x)$ and $A_{2} = A \setminus [0, 1-x)$. \\
+	Define $A_{1}= A \setminus [1-x,1)$ and $A_{2} = A \setminus [0, 1-x)$. \\
 	Clearly $A = A_{1} \cup A_{2}$ and $A_{1} \cap A_{2} = \emptyset$. \\
 	Then 
 	\begin{align*}
@@ -130,7 +130,7 @@ Define $m_{1}:[0,1) \rightarrow \mathds{R}$ as $m_{1}(A) = m(A)$ where $m$ is a 
 
 \bigbreak
 
-	\hspace{-4 ex}\textbf{2.1}Show that the class of elementary sets is closed under the operations: union, intersection, set difference, symmetric difference, and translation. \bigbreak
+	\hspace{-4 ex}\textbf{2.1} Show that the class of elementary sets is closed under the operations: union, intersection, set difference, symmetric difference, and translation. \bigbreak
 	
 	Given elementary sets $A$ and $B$: \bigbreak
 	
@@ -159,7 +159,7 @@ Define $m_{1}:[0,1) \rightarrow \mathds{R}$ as $m_{1}(A) = m(A)$ where $m$ is a 
 		Otherwise, $ d < b$ and $[a,b] \cap [c,d] = [c,d]$. \bigbreak
 		The cases when $c \leq a$ are similar to the above cases. \bigbreak
 		
-		The intersection of any two kinds of intervals (15 other) will be similar to the above case of the intersection of two closed intvervals, but with different inequalities. \bigbreak
+		The intersection of any two kinds of intervals (15 other cases) will be similar to the above case of the intersection of two closed intvervals, but with different inequalities. \bigbreak
 		
 		Hence, the intersection of two intervals is an interval.		
 	\end{proof}
@@ -179,12 +179,13 @@ Define $m_{1}:[0,1) \rightarrow \mathds{R}$ as $m_{1}(A) = m(A)$ where $m$ is a 
 		Then $A=\bigcup\limits_{n=1}^{N}A_{n}$ and $b=\bigcup\limits_{m=1}^{M}B_{m}$ where each $A_{n}$ and $B_{m}$ are boxes. \\
 		Let $x \in A \cap B$.
 		Then there exists $n \in \{1,...,N\}$ and $m \in \{1,...,M\}$ such that $x \in A_{n}$ and $x \in B_{m}$. \\
-		Therefore $x \in A_{n} \cap B_{m}$, and $x \in \bigcup\limits_{(n,m)=(1,1)}^{(N,M)}(A_{n} \cap B_{m})$. \bigbreak
+		Therefore $x \in A_{n} \cap B_{m}$, and $x \in \bigcup\limits_{(n,m) \in Z}(A_{n} \cap B_{m})$ \\
+		Where $Z = \{1,...,N\} \times \{1,...,M\}$. \bigbreak
 		
-		Let $x \in \bigcup\limits_{(n,m)=(1,1)}^{(N,M)}(A_{n} \cap B_{m})$. \\
-		Then $x \in A_{n}$ and $x \in B_{n}$ for some $n \in \{1,...,N\}$ and $m \in \{1,...,M\}$. \\
+		Let $x \in \bigcup\limits_{(n,m) \in Z}(A_{n} \cap B_{m})$. \\
+		Then $x \in A_{n}$ and $x \in B_{m}$ for some $n \in \{1,...,N\}$ and $m \in \{1,...,M\}$. \\
 		Thus $x \in A \cap B$. \bigbreak
-		Since  $A \cap B = \bigcup\limits_{(n,m)=(1,1)}^{(N,M)}(A_{n} \cap B_{m})$, we can say that the intersection of two elementary sets is an elementary set, by the above lemma. \\
+		Since  $A \cap B = \bigcup\limits_{(n,m) \in Z}(A_{n} \cap B_{m})$, we can say that the intersection of two elementary sets is an elementary set, by the above lemma. \\
 	\end{proof}
 
 	\hspace{-4 ex}\textbf{(c)} $A \setminus B$ is an elementary set. \bigbreak
@@ -201,12 +202,12 @@ Define $m_{1}:[0,1) \rightarrow \mathds{R}$ as $m_{1}(A) = m(A)$ where $m$ is a 
 		Otherwise, $ d < b$ and $[a,b] \setminus [c,d] = [a,c) \cup (d,b]$. \bigbreak
 		The cases when $c \leq a$ are similar to the above cases. \bigbreak
 		
-		The set difference of any two kinds of intervals (15 other) will be similar to the above case of the set difference of two closed intvervals, but with different inequalities. \bigbreak
+		The set difference of any two kinds of intervals (15 other cases) will be similar to the above case of the set difference of two closed intvervals, but with different inequalities. \bigbreak
 		
 		Hence, the set difference of two intervals is a finite union of intervals. \\
 	\end{proof}
 
-\textbf{Lemma:} the set difference of two boxes is a union of boxes.
+\textbf{Lemma:} The set difference of two boxes is a union of boxes.
 
 \begin{proof}
 	Let $A = I_{1} \times ... \times I_{d}$ and $B = J_{1} \times ... \times J_{d}$ be boxes in $\mathds{R}^{d}$. \\
@@ -218,18 +219,18 @@ Define $m_{1}:[0,1) \rightarrow \mathds{R}$ as $m_{1}(A) = m(A)$ where $m$ is a 
 			I_{i} & \text{if } t=2 \\
 		\end{cases}
 	\]
-	for $i \in {1,...,d}$ and $t \in {1,2}$.\\
+	for $i \in \{1,...,d\}$ and $t \in {1,2}$.\\
 	Each $K_{(i,t)}$ is a finite union of intervals by a previous lemma.\\
 	Define $\vec{v}$ as a $d$ dimensional vector such that $\vec{v}_{i} \in \{1,2\}$. ($\vec{v}$ is a $d$ dimensional vector of $1$s and $2$s.)
 	Define $P_{\vec{v}} = \prod\limits_{i=1}^{d} K_{(i,\vec{v}_{i})}$. \\
 	Since $(A \cup B) \times C = (A \times C) \cup (B \times C)$ from set theory, we can say that each $P_{\vec{v}}$ is a union of boxes. (A product of unions of intervals is a union of products of intervals). \bigbreak
 	
 	Let $P = \bigcup\limits_{\vec{u} \in V} P_{\vec{u}}$ where $V$ is the set of $d$ dimensional vectors of $1$s and $2$s except the vector of all $1$s. \\
-	since $P$ is a finite union of finite unions of boxes, it is an elementary set. It remains to show that $A \setminus B = P$. \bigbreak
+	Since $P$ is a finite union of finite unions of boxes, it is an elementary set. It remains to show that $A \setminus B = P$. \bigbreak
 	
 	Let $\vec{x} \in A \setminus B$. \\
 	Since $\vec{x} \notin B$, there exists $i \in \{1,...,d\}$ such that $\vec{x}_{i} \notin J_{i}$. \\
-	Thus $\vec{x}_{i} \in K_{i,2}$ \\
+	Thus $\vec{x}_{i} \in K_{i,1}$ \\
 	For $j \in \{1,...,d\}$ where $j \neq i$ it is clear that $\vec{x}_{j}$ is either in $ K_{j,1}$ or $ K_{j,2}$. \\
 	Thus $x \in P_{\vec{v}}$ for some $\vec{v}$ that is not all $2$s, and thus $x \in P$. \bigbreak 
 	
@@ -237,7 +238,7 @@ Define $m_{1}:[0,1) \rightarrow \mathds{R}$ as $m_{1}(A) = m(A)$ where $m$ is a 
 	Then $\vec{x} \in P_{\vec{v}}$ for some $\vec{v}$ that is not all $1$s. \\
 	Then $\vec{x}_{i} \in K_{i,t}$ for all $i \in \{1,...,d\}$ and $t \in \{1,2\}$. \\
 	Clearly $\vec{x} \in A$. \\
-	Since $\vec{v}$ is not all $2$s, $\exists j \in \{1,...,d\}$ such that $\vec{x}_{j} \in K_{j,2}$, and thus $\vec{x}_{j} \notin J_{j}$. \\
+	Since $\vec{v}$ is not all $2$s, $\exists j \in \{1,...,d\}$ such that $\vec{x}_{j} \in K_{j,1}$, and thus $\vec{x}_{j} \notin J_{j}$. \\
 	Finally $\vec{x} \notin B$, so $\vec{x} \in A \setminus B$.	\\
 \end{proof}
 
@@ -258,6 +259,23 @@ Define $m_{1}:[0,1) \rightarrow \mathds{R}$ as $m_{1}(A) = m(A)$ where $m$ is a 
 	By part (a), $(A \setminus B) \cup (B \setminus A)$ is an elementary set.\\
 \end{proof}
 
+\hspace{-4 ex}\textbf{(e)} For $\vec{x} \in \mathbb{R}^{d}$, $\vec{x} + A$ is an elementary set. \bigbreak
+
+\begin{proof}
+	For any interval $(a,b)$, and any $x \in \mathbb{R}$, clearly $x + (a,b) = (x+a, x+b)$ which is still an interval. This holds for all four types of intervals. \bigbreak
+	
+	For any box $B = \prod\limits_{i=1}^{d}I_{i}$, and any $\vec{x} \in \mathbb{R}^{d}$, clearly $x + B = \prod\limits_{i=1}^{d}x_{i}+I_{i}$ which is still a box. \bigbreak
+	
+	For any elementary set $A = \bigcup\limits_{i=1}^{n}B_{i}$, and any $\vec{x} \in \mathbb{R}^{d}$, clearly \\
+	\begin{align}
+		x + A & = x + \bigcup\limits_{i=1}^{d}B_{i} \\
+		& = \bigcup\limits_{i=1}^{d}x + B_{i} \\
+	\end{align}
+	and is still a finite union of boxes. \\
+ \bigbreak
+	
+	
+\end{proof}
 
 
 \hspace{-4 ex}\textbf{2.2}Prove the elementary measure satisfies the monotonicity and finite subadditivity properties. \bigbreak
