@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+
+\usepackage{fancyhdr} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{dsfont}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Shaw \space \thepage}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+	\thispagestyle{empty}
+	
+\begin{flushright}
+	Sage Shaw \\
+	m515 - Fall 2017 \\
+	Sep. 1, 2017
+\end{flushright}
+	
+{\large \textbf{HW 2: 3.2,4,5; 4.2,3}}\bigbreak
+
+%problem 3.2
+\hspace{-4 ex}\textbf{3.2} Show that $E$ is Jordan measurable iff for all $\epsilon>0$ there is an elementary set $A$ such that $m(E\Delta A)<\epsilon$. \bigbreak
+
+	\begin{proof}
+		Let $E$ be a Jordon Measurable set, and let $\epsilon >0$ be given. Then by Lemma 3.2, part (1), we can say $\exists A,B$ such that $A \subseteq E \subseteq B$ where $A$ and $B$ are elementary sets, and $m(B\setminus A)< \epsilon$. \\
+		Since $E \subseteq B$, $(E \setminus A) \subseteq (B \setminus A)$. \\
+		Since $A \subseteq E$, $A \setminus E = \emptyset$, and $E \Delta A = E \setminus A$. \\ 
+		So $(E \Delta A) = (E \setminus A) \subset (B \setminus A)$.\\
+		Then by Proposition 2.5, $m(E \Delta A) \leq m(B \setminus A) < \epsilon$.\\
+	\end{proof}
+
+%problem 3.4
+\hspace{-4 ex}\textbf{3.4} Say that $E$ is \emph{Jordan null} if $E$ is Jordan measurable and $m(E)=0$. Show that any subset of a Jordan null set is a Jordan null set. \bigbreak
+
+	\begin{proof}
+		Let $A \subset E$ where $E$ is Jordan Measurable and $m(E)=0$. \\
+		Let $\epsilon >0$ be given.\\
+		Since $\emptyset \subseteq A$, and $m(\emptyset)=0$,  $0 \leq m_{*j}(A)$.\\
+		Since $E$ is Jordon Measurable, $\exists$ elementary sets $A^{\prime}, B$ where $A^{\prime} \subseteq E \subseteq B$ such that $m(B \setminus A^{\prime})<\epsilon$. \\
+		Then $m(B \setminus A^{\prime}) = m(B) - m(A^{\prime})$. \\
+		Since $A^{\prime} \subseteq E, m(A^{\prime}) = 0$. \\
+		Thus $m(B \setminus A^{\prime}) = m(B) < \epsilon$. \\
+		Since $A \subseteq B, m_{*j}(A) \leq m(B) < \epsilon$. \\
+		Taking the limit we can see that $0 \leq m_{*j}(A) \leq m^{*j}(A) \leq 0$, and $m(A)=0$.\\		
+	\end{proof}
+
+
+
+%problem 3.5
+\hspace{-4 ex}\textbf{3.5} Show that the outer Jordan measure $m^{*j}(E)$ is equal to: $$x = inf\{\text{vol}(B_1)+\cdots+\text{vol}(B_k) : B_1,\ldots,B_k  \text{ are boxes} \}$$ and $E\subset \{B_1\cup\cdots\cup B_k\}$. \bigbreak
+
+	\begin{proof}
+		Suppose $B$ is an elementary set such that $E \subseteq B$. Then $m^{*j}(E) \leq m(B)$. \\
+		By Lemma 2.2 $\exists \text{ disjoint } B_1,...B_k$ such that $B = \bigcup B_k$.\\
+		Then from finite additivity $m(B) = \sum m(B_k)$. \\
+		By definition of infimum, $m(E) \leq m(B) \leq x$. \\
+		Suppose $m(E) < x$. \\
+		Then $m(E) + \epsilon = x$ for some $\epsilon > 0$. \\
+		Since 
+		
+	\end{proof}
+
+
+
+%problem 4.2
+\hspace{-4 ex}\textbf{4.2} Let $f\colon[a,b]\to\mathbb{R}$. Show that if $f$ is continuous, then $f$ is Riemann integrable. Show that if $f$ is bounded and piecewise continuous, then $f$ is Riemann integrable. \bigbreak
+
+
+
+
+
+%problem 4.3
+\hspace{-4 ex}\textbf{4.3} Show that the Riemann integral satisfies the linearity and monotonicity properties. \bigbreak
+
+
+
+
+
+\end{document}
