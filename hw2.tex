@@ -24,44 +24,74 @@
 {\large \textbf{HW 2: 3.2,4,5; 4.2,3}}\bigbreak
 
 %problem 3.2
-\hspace{-4 ex}\textbf{3.2} Show that $E$ is Jordan measurable iff for all $\epsilon>0$ there is an elementary set $A$ such that $m(E\Delta A)<\epsilon$. \bigbreak
+\hspace{-4 ex}\textbf{3.2} Show that $E$ is Jordan measurable iff for all $\epsilon>0$ there is an elementary set $A$ such that $m(E\bigtriangleup A)<\epsilon$. \bigbreak
 
 	\begin{proof}
 		Let $E$ be a Jordon Measurable set, and let $\epsilon >0$ be given. Then by Lemma 3.2, part (1), we can say $\exists A,B$ such that $A \subseteq E \subseteq B$ where $A$ and $B$ are elementary sets, and $m(B\setminus A)< \epsilon$. \\
 		Since $E \subseteq B$, $(E \setminus A) \subseteq (B \setminus A)$. \\
-		Since $A \subseteq E$, $A \setminus E = \emptyset$, and $E \Delta A = E \setminus A$. \\ 
-		So $(E \Delta A) = (E \setminus A) \subset (B \setminus A)$.\\
-		Then by Proposition 2.5, $m(E \Delta A) \leq m(B \setminus A) < \epsilon$.\\
+		Since $A \subseteq E$, $A \setminus E = \emptyset$, and $E \bigtriangleup A = E \setminus A$. \\ 
+		So $(E \bigtriangleup A) = (E \setminus A) \subset (B \setminus A)$.\\
+		Then by Proposition 2.5, $m(E \bigtriangleup A) \leq m(B \setminus A) < \epsilon$.\bigbreak
+		
+		Now we prove the other direction. Suppose that for all $\epsilon>0$ there is an elementary set $A$ such that $m(E\bigtriangleup A)<\epsilon$.\\
+		
+		Let $\epsilon > 0$ be given. \\
+		By our premise, $\exists $ an elementary set $A$ such that $m(E\bigtriangleup A)<\epsilon / 2$. \\
+		Since $m(E \bigtriangleup A)$ exists, there exist elementary sets $C$ and $D$ such that \\
+		$m(D \setminus C) < \epsilon/2$ and $C \subseteq E \bigtriangleup A \subseteq D$. \\
+		Note that since $C \subseteq E \bigtriangleup A$, by monotonicity we can say that $m(C) < \epsilon/2$. \\
+		Since $C \subseteq D$, we can say that $m(D)-m(C) = m(D \setminus C) < \epsilon/2$. \\
+		Then $m(D) < \epsilon/2 + m(C) < \epsilon$. \bigbreak
+		
+		Consider the set $A \setminus D$. \\
+		Since $E \bigtriangleup A \subseteq D$, $E \setminus A \subseteq D$ and thus we know that $A \setminus D \subseteq A \setminus (E \setminus A) \subseteq E$. Hence $A \setminus D$ is an elementary set contained in $E$. \\
+		
+		Now consider the elementary set $A \cup D$. \\
+		Since $E \bigtriangleup A \subseteq D$, we can say $(E \setminus A) \subseteq D$ and $E \subseteq A \cup (E \setminus A) \subseteq A \cup D$. \\
+		Hence $A \cup D$ is an elementary set that contains $E$. \\
+		
+		Note that $(A \cup D) \setminus (A \setminus D) = D$.\\
+		So $m((A \cup D) \setminus (A \setminus D)) = m(D) < \epsilon$, where $(A \setminus D) \subseteq E \subseteq (A \cup D)$, and $(A \setminus D)$ and $(A \cup D)$ are elementary sets. By part 1 of lemma 3.2, $E$ is Jordan measurable. \\		
 	\end{proof}
 
 %problem 3.4
 \hspace{-4 ex}\textbf{3.4} Say that $E$ is \emph{Jordan null} if $E$ is Jordan measurable and $m(E)=0$. Show that any subset of a Jordan null set is a Jordan null set. \bigbreak
 
 	\begin{proof}
-		Let $A \subset E$ where $E$ is Jordan Measurable and $m(E)=0$. \\
+		Let $A \subseteq E$ where $E$ is Jordan Measurable and $m(E)=0$. \\
 		Let $\epsilon >0$ be given.\\
 		Since $\emptyset \subseteq A$, and $m(\emptyset)=0$,  $0 \leq m_{*j}(A)$.\\
 		Since $E$ is Jordon Measurable, $\exists$ elementary sets $A^{\prime}, B$ where $A^{\prime} \subseteq E \subseteq B$ such that $m(B \setminus A^{\prime})<\epsilon$. \\
 		Then $m(B \setminus A^{\prime}) = m(B) - m(A^{\prime})$. \\
-		Since $A^{\prime} \subseteq E, m(A^{\prime}) = 0$. \\
+		Since $A^{\prime} \subseteq E$ and $A^\prime$ is elementary, $m(A^{\prime}) = 0$. \\
 		Thus $m(B \setminus A^{\prime}) = m(B) < \epsilon$. \\
-		Since $A \subseteq B, m_{*j}(A) \leq m(B) < \epsilon$. \\
-		Taking the limit we can see that $0 \leq m_{*j}(A) \leq m^{*j}(A) \leq 0$, and $m(A)=0$.\\		
+		Since $A \subseteq B, m^{*j}(A) \leq m(B) < \epsilon$. \\
+		Taking the limit we can see that $0 \leq m_{*j}(A) \leq m^{*j}(A) \leq 0$, and $m(A)=0$.\\
+		Thus $A$ is a Jordan null set.\\	
 	\end{proof}
 
 
 
 %problem 3.5
-\hspace{-4 ex}\textbf{3.5} Show that the outer Jordan measure $m^{*j}(E)$ is equal to: $$x = inf\{\text{vol}(B_1)+\cdots+\text{vol}(B_k) : B_1,\ldots,B_k  \text{ are boxes} \}$$ and $E\subset \{B_1\cup\cdots\cup B_k\}$. \bigbreak
+\hspace{-4 ex}\textbf{3.5} Show that the outer Jordan measure $m^{*j}(E)$ is equal to: $$x = \text{inf}\{\text{vol}(B_1)+\cdots+\text{vol}(B_k) : B_1,\ldots,B_k  \text{ are boxes} \}$$ and $E\subset \{B_1\cup\cdots\cup B_k\}$. \bigbreak
 
 	\begin{proof}
-		Suppose $B$ is an elementary set such that $E \subseteq B$. Then $m^{*j}(E) \leq m(B)$. \\
-		By Lemma 2.2 $\exists \text{ disjoint } B_1,...B_k$ such that $B = \bigcup B_k$.\\
-		Then from finite additivity $m(B) = \sum m(B_k)$. \\
-		By definition of infimum, $m(E) \leq m(B) \leq x$. \\
-		Suppose $m(E) < x$. \\
-		Then $m(E) + \epsilon = x$ for some $\epsilon > 0$. \\
-		Since 
+		Define $S_1^\prime =  \{\text{vol}(B_1)+\cdots+\text{vol}(B_k) : B_1,\ldots,B_k  \text{ are boxes} \}$ and $E\subset \{B_1\cup\cdots\cup B_k\}$. \\
+		Define $S_1 =  \{\text{vol}(B_1)+\cdots+\text{vol}(B_k) : B_1,\ldots,B_k  \text{ are boxes} \}$ and $E\subset \{B_1\cup\cdots\cup B_k\}$ where all $B_i$ are pairwise disjoint. \\
+		Clearly, $S_1 \subseteq S_1^\prime$ so $\text{inf}(S_1^\prime) \leq \text{inf}(S_1) $. \\
+		Suppose $x \in S_1$. Then $x = \sum\limits_{i=1}^k \text{vol}(B_i)$ and \bigbreak
+		
+		Also define $S_2 = \{m(A) : A \text{ is elementary and } A \subseteq E \}$. \\
+		By definition $\text{inf}(S_1) = x$ and $\text{inf}(S_2) = m^{*j}(E)$. \bigbreak
+		
+		It is sufficient to show that $S_1=S_2$. \bigbreak
+		
+		Let $x \in S_1$. Then there exist boxes $B_1,...,B_k$ such that $E\subset \bigcup\limits_{i=1}^k B_i$ and $x = \sum\limits_{i=1}^k \text{vol}(B_i)$. \\
+		By definition 
+		
+		
+		
+		
 		
 	\end{proof}
 
