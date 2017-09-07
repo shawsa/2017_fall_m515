@@ -37,17 +37,19 @@
 		
 		Let $\epsilon > 0$ be given. \\
 		By our premise, $\exists $ an elementary set $A$ such that $m(E\bigtriangleup A)<\epsilon / 2$. \\
-		Since $m(E \bigtriangleup A)$ exists, there exist elementary sets $C$ and $D$ such that \\
+		Since $m(E \bigtriangleup A)$ exists, by Lemma 3.2 part (1) there exist elementary sets $C$ and $D$ such that \\
 		$m(D \setminus C) < \epsilon/2$ and $C \subseteq E \bigtriangleup A \subseteq D$. \\
 		Note that since $C \subseteq E \bigtriangleup A$, by monotonicity we can say that $m(C) < \epsilon/2$. \\
 		Since $C \subseteq D$, we can say that $m(D)-m(C) = m(D \setminus C) < \epsilon/2$. \\
 		Then $m(D) < \epsilon/2 + m(C) < \epsilon$. \bigbreak
 		
 		Consider the set $A \setminus D$. \\
-		Since $E \bigtriangleup A \subseteq D$, $E \setminus A \subseteq D$ and thus we know that $A \setminus D \subseteq A \setminus (E \setminus A) \subseteq E$. Hence $A \setminus D$ is an elementary set contained in $E$. \\
+		Since $E \bigtriangleup A \subseteq D$, $A \setminus E \subseteq D$ and thus we know that $$A \setminus D \subseteq A \setminus (A \setminus E) = A \cap E \subseteq E$$
+		Hence $A \setminus D$ is an elementary set contained in $E$. \\
 		
 		Now consider the elementary set $A \cup D$. \\
-		Since $E \bigtriangleup A \subseteq D$, we can say $(E \setminus A) \subseteq D$ and $E \subseteq A \cup (E \setminus A) \subseteq A \cup D$. \\
+		Since $E \bigtriangleup A \subseteq D$, we can say $(E \setminus A) \subseteq D$ and 
+		$$E \subseteq E \cup A = A \cup (E \setminus A) \subseteq A \cup D$$
 		Hence $A \cup D$ is an elementary set that contains $E$. \\
 		
 		Note that $(A \cup D) \setminus (A \setminus D) = D$.\\
@@ -79,7 +81,7 @@
 		Define $S_1 =  \{\text{vol}(B_1)+\cdots+\text{vol}(B_k) : B_1,\ldots,B_k  \text{ are boxes} \}$ and $E\subset \{B_1\cup\cdots\cup B_k\}$. \\
 		Then $x = \text{inf}(S_1)$. \\
 		Also define $S_2 = \{m(A) : A \text{ is elementary and } A \subseteq E \}$. \\
-		Then $m^{*j}(E) = \text{inf}(S_2)$ by definition. Also from using Lemma 2.2 and finite additivity it's clear that $S_2 \subseteq S_1$ (the measure of an elementary set is equal to the finite sum of measures of some boxes). Then $\text{inf}(S_1) \leq \text{inf}(S_2)$.\\
+		Then $m^{*j}(E) = \text{inf}(S_2)$ by definition. Also from using Lemma 2.2 and finite additivity it's clear that $S_2 \subseteq S_1$ (the measure of an elementary set is equal to the finite sum of measures of some disjoint boxes). Then $\text{inf}(S_1) \leq \text{inf}(S_2)$.\\
 		
 		Suppose that $x \in S_1$ and $ x < \text{inf}(S_2)$. Then $x = \sum\limits_{i=1}^k \text{vol}(B_i)$ for some $B_i$ boxes where $E \subseteq \bigcup\limits_{i=1}^{k}B_i$. Since elementary sets are closed under finite union,  $\bigcup\limits_{i=1}^{k}B_i$ is elementary, and by Lemma 2.2 it can be written as the finite union of \textit{disjoint} boxes $C_i$. So $x = \sum\limits_{i=1}^k \text{vol}(B_i) \geq m(\bigcup\limits_{i=1}^{k}B_i) = m(\bigcup\limits_{i=1}^{k}C_i) = \sum\limits_{i=1}^{k}m(C_i) \in S_1$. Then $x \geq \text{inf}(S_1)$ and we have a contradiction. \\
 		Thus $\text{inf}(S_1) = \text{inf}(S_2) = m^{*j}(E)$. \\
@@ -106,24 +108,51 @@
 \hspace{-4 ex}\textbf{4.2} Let $f\colon[a,b]\to\mathbb{R}$. Show that if $f$ is continuous, then $f$ is Riemann integrable. Show that if $f$ is bounded and piecewise continuous, then $f$ is Riemann integrable. \bigbreak
 
 	\begin{proof}  \text{ }\\
+		We first prove that if $f$ is continuous on $[a,b]$, then it is Riemann integrable over $[a,b]$. \\
+		
 		Let $f : [a,b] \to \mathbb{R}$ be a continuous function. From Analysis we know that $f$ is also uniformly continuous and bounded.\\
 		Let $\epsilon > 0$ be given. \\
 		Since $f$ is uniformly continuous, there exists $ \delta >0$ such that for all $x,x^* \in [a,b]$, if $\vert x - x^* \vert < \delta$ then $\vert f(x) - f(x^*) \vert < \frac{\epsilon}{b-a}$.\\
 		By the Archimedean property there exists some natural number $n$, such that $n > \frac{b-a}{\delta}$. \\
 		Define $x_i = \frac{b-a}{n} i+ a$ for $i \in \{0,...,n\}$, and define $I_i = [x_{i-1}, x_i]$ for $i \in \{1,...,n\}$. Note that the length of each of these intervals is $\frac{b-a}{n} < \delta$ and there are $n$ intervals. \\
-		Now define $\overline{h} = \sum\limits_i c_i \chi_{I_i}$ where $c_i = \text{max} \{f(x) : x \in I_i\}$. \\
-		Also define $underline{h} = \sum\limits_i d_i \chi_{I_i}$ where $d_i = \text{min} \{f(x) : x \in I_i\}$. \\
-		Since $f$ is bounded and continuous on $I_i$ we know that it has a maximum value and a minimum value over each interval and these is well defined. \\
+		Now define $\overline{h} = \sum\limits_{i=1}^n c_i \chi_{I_i}$ where $c_i = \text{sup} \{f(x) : x \in I_i\}$. \\
+		Also define $\underline{h} = \sum\limits_{i=1}^n d_i \chi_{I_i}$ where $d_i = \text{inf} \{f(x) : x \in I_i\}$. \\
+		%Since $f$ is bounded and continuous on $I_i$ we know that it has a maximum value and a minimum value over each interval and these is well defined. \\
 		Clearly $\underline{h} \leq f \leq \overline{h}$ and both $\underline{h}$ and $\overline{h}$ are p.c. functions.\\
 		
 		Next we will show that $\underline{\int}f = \overline{\int}f$ using an $\epsilon$ style argument. \\
 		
-		From the definition of p.c. integral it is easy to see that $\text{pc}\int\underline{h} \leq \underline{\int}f \leq \underline{\int}f \leq \text{pc}\int\underline{h}$. \\
+		From the definition of p.c. integral it is easy to see that $$\text{pc}\int\underline{h} \leq \underline{\int}f \leq \overline{\int}f \leq \text{pc}\int \overline{h}$$ \\
+		Let $\epsilon > 0$ be given. We would like to show that $\text{pc}\int\overline{h} - \text{pc}\int \underline{h} < \epsilon$.\\
+		\begin{align*}
+			\text{pc}\int\overline{h} - \text{pc}\int\underline{h} & = \sum\limits_{i=1}^n c_i m(I_i) - \sum\limits_{i=1}^n d_i m(I_i) \\
+			& = \sum\limits_{i=1}^n (c_i - d_i) m(I_i)\\
+			& = \sum\limits_{i=1}^n (c_i - d_i) \frac{b-a}{n}\\
+			& < \sum\limits_{i=1}^n \frac{\epsilon}{b-a} \frac{b-a}{n} = \epsilon\\
+		\end{align*}
 		
-		$\underset{a}{b} \overbrace{a} \bar{A} \underline{\int} \overline{\int}$\\
+		Note that in the above we can say that $(c_i - d_i) < \frac{\epsilon}{b-a}$ since $c_i,d_i \in I_i$ and so they are within a $\delta$ distance of eachother.\\
 		
+		By our epsilon argument, $f$ is Riemann integrable over $[a,b]$. \\
 		
+		We now prove that if $f$ is piecewise continuous and bounded, that it is Riemann integrable. \\
 		
+		Suppose that $f$ is continuous on each of a finite partition of intervals of $[a,b]$, and bounded. Let's say that there are $k$ intervals.\\
+		On each of these intervals $I_j$ it is continuous. By the above argument we can define two piecewise constant functions on each interval $\underline{h}_j$ and $\overline{h}_j$ such that they bound $f$ over $I_j$ and $\text{pc}\int\overline{h}_j - \text{pc}\int \underline {h}_j < \frac{\epsilon}{k}$ of eachother. \\
+		It is easy to see that $\underline{h}(x) = \underline{h}_j(x) \text{ for } x \in I_j$ is a p.c. function. \\
+		Similarly $\overline{h}(x) = \{\overline{h}_j(x) \text{ for } x \in I_j$ is a p.c. function. \\
+		Since any sub-interval of each $I_j$ is also a sub-interval of $[a,b]$, we can say $\underline{h} = \sum\limits_{j}\underline{h}_j$ and $\overline{h} = \sum\limits_{j}\overline{h}_j$. \\
+		
+		Then as above $\underline{h} \leq f \leq \overline{h}$, and we will show that $\underline{\int}f = \overline{\int}f$ using an $\epsilon$ style argument. \\
+		
+		Let $\epsilon > 0$ be given. We would like to show that $\text{pc}\int\overline{h} - \text{pc}\int \underline{h} < \epsilon$.\\
+		\begin{align*}
+			\text{pc}\int\underline{h} - \text{pc}\int\underline{h} & = \sum\limits_{j=1}^k \Big( \text{pc}\int\overline{h}_i \Big) - \sum\limits_{j=1}^k \Big( \text{pc}\int\underline{h}_i \Big) \\
+			& = \sum\limits_{j=1}^k \Big( \text{pc}\int\overline{h}_i - \text{pc}\int\underline{h}_i \Big) \\
+			& < \sum\limits_{j=1}^k \frac{\epsilon}{k} = \epsilon\\
+		\end{align*}
+		
+		By our epsilon argument, $f$ is Riemann integrable over $[a,b]$. \\		
 	\end{proof}
 
 
@@ -131,7 +160,57 @@
 %problem 4.3
 \hspace{-4 ex}\textbf{4.3} Show that the Riemann integral satisfies the linearity and monotonicity properties. \bigbreak
 
-
+	\begin{proof}  \text{ }\\
+		Linearity: \\
+		
+		Let $f,g$ be Riemann integrable over $[a,b]$, and let $c \in \mathbb{R}$. \\
+		
+		First note that if $c=0$ then $\int cf = \int 0 = 0$ since the zero function is a p.c. function. Then $0 \int f = \int 0 f$. \\
+		Suppose $c > 0$. \\
+		Let $\epsilon > 0$ be given. Then there exists p.c. functions $\underline{h}, \overline{h}$ such that $\underline{h} \leq f \leq \overline{h}$ and $\text{pc}\int \overline{h} - \underline{h} < \frac{\epsilon}{c}$. \\
+		Then $c\underline{h}$, and $c\overline{h}$ are clearly p.c. functions where $c\underline{h} \leq cf \leq c\overline{h}$ and \\
+		\begin{align*}
+			\text{pc}\int c \overline{h} - \text{pc}\int c \underline{h} &  = c \Big(\text{pc}\int  \overline{h} - \text{pc}\int \underline{h} \Big) \text{\space \space \space since these are just sums}\\
+			& < c \frac{\epsilon}{c} = \epsilon \\
+		\end{align*}
+		
+		Thus $c \int f = \int cf$ if $c \geq 0$. \\
+		
+		Suppose $c < 0$. Then as above we have p.c. functions $\underline{h}, \overline{h}$ such that $\underline{h} \leq f \leq \overline{h}$, but $c\overline{h} \leq cf \leq c\underline{h}$ and  $\text{pc}\int \overline{h} - \underline{h} < -\frac{\epsilon}{c}$. \\
+		Then \\
+		$$\text{pc}\int c \underline{h} - \text{pc}\int c \overline{h}  = c \Big(\text{pc}\int  \underline{h} - \text{pc}\int \overline{h} \Big)$$ \\
+		since these are just sums. Since $\text{pc}\int \overline{h} - \underline{h} < -\frac{\epsilon}{c}$, we know $\text{pc}\int \underline{h} - \overline{h} > \frac{\epsilon}{c}$, \\
+		and $c \big( \text{pc}\int \underline{h} - \overline{h} \big) < \frac{\epsilon}{c}c = \epsilon$. \\
+		
+		Thus $c \int f = \int cf$. \\
+		
+		Next we show that $\int f +g = \int f + \int g$. \\
+		
+		Since $f,g$ are continuous, there exist p.c. functions $\underline{h}, \overline{h}, \underline{\phi}, \overline{\phi}$ such that \\
+		\begin{align*}
+			\underline{h} \leq f \leq \overline{h} &  &\underline{\phi} \leq g \leq \overline{\phi} \\
+			\text{pc}\int \underline{h} - \overline{h} < \frac{\epsilon}{2} &  & \text{pc}\int \underline{\phi} - \overline{phi} < \frac{\epsilon}{2} \\
+		\end{align*}
+		
+		Note that for any two p.c. functions (and hence any finite number) on the same interval, one can make a common refinement of their partitions and create equivalent p.c. functions over the same partition. Without loss of generality say that $\underline{h}, \overline{h}, \underline{\phi}, \overline{\phi}$ are p.c. functions over the same partition. Clearly, their sums are also p.c. functions, and the p.c. integrals of their sums are the sums of their p.c. integrals. \\
+		
+		Then  $\underline{h} + \underline{\phi} \leq f +g  \leq \overline{h} + \overline{\phi}$ and \\
+		\begin{align*}
+			\text{pc}\int \overline{h} + \overline{\phi} - \text{pc}\int  \underline{h} + \underline{\phi} & = \text{pc}\int \overline{h} + \underline{h} - \underline{\phi} - \overline{\phi} \\
+			& = \text{pc}\int \overline{h} - \underline{h} - \text{pc}\int  \overline{\phi} + \underline{\phi} \\
+			& < \frac{\epsilon}{2} +\frac{\epsilon}{2} = \epsilon
+		\end{align*}
+		
+		Hence $\int f +g = \int f + \int g$ and we have shown Riemann integration to be a linear operation.\\
+		
+		Monotonicity: \\
+		
+		Let $f,g$ be Riemann integrable and $f \leq g$. \\
+		Then $0 \leq g-f$ and $g-f = g + (-1)f$ is Riemann integrable from above. \\
+		Note that $0$ is a p.c. function. \\
+		Then $0 = \text{pc}\int 0 \leq \int g-f = \int g - \int f$. \\
+		So $\int f \leq \int g$. \\		
+	\end{proof}
 
 
 
