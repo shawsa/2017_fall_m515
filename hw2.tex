@@ -108,10 +108,19 @@
 	\begin{proof}  \text{ }\\
 		Let $f : [a,b] \to \mathbb{R}$ be a continuous function. From Analysis we know that $f$ is also uniformly continuous and bounded.\\
 		Let $\epsilon > 0$ be given. \\
-		Since $f$ is uniformly continuous, there exists $ \delta >0$ such that for all $x,x^* \in [a,b]$, if $\vert x - x^* \vert < \delta$ then $\vert f(x) - f(x^*) \vert < \epsilon$.\\
-		By the Archimedean property there exists some natural number $n$, such that $n > 1/\delta$. \\
-		Define $x_i = \frac{b-a}{n} i+ a$ for $i \in \{0,...,n\}$, and define $I_i = [x_{i-1}, x_i]$ for $i \in \{1,...,n\}$. Note that the length of each of these intervals is \\
-		$\chi$ \\
+		Since $f$ is uniformly continuous, there exists $ \delta >0$ such that for all $x,x^* \in [a,b]$, if $\vert x - x^* \vert < \delta$ then $\vert f(x) - f(x^*) \vert < \frac{\epsilon}{b-a}$.\\
+		By the Archimedean property there exists some natural number $n$, such that $n > \frac{b-a}{\delta}$. \\
+		Define $x_i = \frac{b-a}{n} i+ a$ for $i \in \{0,...,n\}$, and define $I_i = [x_{i-1}, x_i]$ for $i \in \{1,...,n\}$. Note that the length of each of these intervals is $\frac{b-a}{n} < \delta$ and there are $n$ intervals. \\
+		Now define $\overline{h} = \sum\limits_i c_i \chi_{I_i}$ where $c_i = \text{max} \{f(x) : x \in I_i\}$. \\
+		Also define $underline{h} = \sum\limits_i d_i \chi_{I_i}$ where $d_i = \text{min} \{f(x) : x \in I_i\}$. \\
+		Since $f$ is bounded and continuous on $I_i$ we know that it has a maximum value and a minimum value over each interval and these is well defined. \\
+		Clearly $\underline{h} \leq f \leq \overline{h}$ and both $\underline{h}$ and $\overline{h}$ are p.c. functions.\\
+		
+		Next we will show that $\underline{\int}f = \overline{\int}f$ using an $\epsilon$ style argument. \\
+		
+		From the definition of p.c. integral it is easy to see that $\text{pc}\int\underline{h} \leq \underline{\int}f \leq \underline{\int}f \leq \text{pc}\int\underline{h}$. \\
+		
+		$\underset{a}{b} \overbrace{a} \bar{A} \underline{\int} \overline{\int}$\\
 		
 		
 		
