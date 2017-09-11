@@ -6,6 +6,8 @@
 \usepackage{amsthm}
 \usepackage{dsfont}
 
+\usepackage[margin=1in]{geometry}
+
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{Shaw \space \thepage}
@@ -21,7 +23,7 @@
 	Sep. 1, 2017
 \end{flushright}
 	
-{\large \textbf{HW 2: 3.2,4,5; 4.2,3}}\bigbreak
+{\large \textbf{HW 2: 3.2, 4, 5; 4.2, 3}}\bigbreak
 
 %problem 3.2
 \hspace{-4 ex}\textbf{3.2} Show that $E$ is Jordan measurable iff for all $\epsilon>0$ there is an elementary set $A$ such that $m^{*J}(E\bigtriangleup A)<\epsilon$. \bigbreak
@@ -39,13 +41,7 @@
 		
 		By our premise, $\exists $ an elementary set $A$ such that $m^{*J}(E\bigtriangleup A)<\epsilon$. \\
 		
-		%Since $m(E \bigtriangleup A)$ exists, by Lemma 3.2 part (1) there exist elementary sets $C$ and $D$ such that \\
-		%$m(D \setminus C) < \epsilon/2$ and $C \subseteq E \bigtriangleup A \subseteq D$. \\
 		Then there exists some elementary set $D$ that such that $E \bigtriangleup A \subseteq D$ and $m^{*J}(E\bigtriangleup A) \leq m(D) < \epsilon$, since if there did not, then $\epsilon$ would be a lower bound greater than $m^{*J}(E\bigtriangleup A)$. \\
-		
-		%Note that since $C \subseteq E \bigtriangleup A$, by monotonicity we can say that $m(C) < \epsilon/2$. \\
-		%Since $C \subseteq D$, we can say that $m(D)-m(C) = m(D \setminus C) < \epsilon/2$. \\
-		%Then $m(D) < \epsilon/2 + m(C) < \epsilon$. \bigbreak
 		
 		Consider the set $A \setminus D$. \\
 		Since $E \bigtriangleup A \subseteq D$, $A \setminus E \subseteq D$ and thus we know that $$A \setminus D \subseteq A \setminus (A \setminus E) = A \cap E \subseteq E$$
