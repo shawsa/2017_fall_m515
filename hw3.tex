@@ -6,7 +6,7 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amsthm}
-\usepackage{dsfont}
+%\usepackage{dsfont}
 
 % Commands	****************************************************************************************
 %\newcommand{\problem}[1]{\hspace{-\widthof{#1}} \textbf{#1}}
@@ -35,7 +35,10 @@
 
 \problem{5.1} Tao ex 1.2.1. Show that the countable union of Jordan measurable sets need not be Jordan measurable, even when bounded. Show that the countable intersection of Jordan measurable sets need not be Jordan measurable.
 
-	\textit{Example:} Let $A = \{(x,y) \in [0,1] \times [0,1] \vert x \notin \mathbb{Q}\}$. Then $$A = ([0,1] \times [0,1]) \cap \bigcap\limits_{x\ \in \mathbb{Q}}([x,x]\times[0,1])$$ is a countable intersection of Jordan measurable sets (boxes in fact) that is not Jordan measurable since the upper Jordan measure is 1 and the lower Jordan measure is 0.
+	\textit{Example:} Let $A_x = [0,1]\setminus\{x\}$. Clearly $m_j(A_x)=1$ for any $x$. Now consider $\bigcap\limits_{x \in \mathbb{Q}}A_x = [0,1] \setminus \mathbb{Q}$. The finite intersection of any $A_n$ has Jordan measure 1, but the countable intersection has lower Jordan measure 0 and upper Jordan measure 1 and is therefore not Jordan measurable.\\
+	
+	
+	%Let $A = \{(x,y) \in [0,1] \times [0,1] \vert x \notin \mathbb{Q}\}$. Then $$A = ([0,1] \times [0,1]) \cap \bigcap\limits_{x\ \in \mathbb{Q}}([x,x]\times[0,1])$$ is a countable intersection of Jordan measurable sets (boxes in fact) that is not Jordan measurable since the upper Jordan measure is 1 and the lower Jordan measure is 0.
 
 
 
@@ -74,16 +77,18 @@
 		\end{align*}
 	Notice then that $m^{*J}(A) = \text{inf}(S_J(A))$ and $m^{*}(A) = \text{inf}(S_L(A))$. By padding the finite set of boxes with the empty set (which is a box) we can see that $S_J(A) \subseteq S_L(A)$ and thus $\text{inf}(S_L(A)) \leq \text{inf}(S_J(A))$. This should be clear since any lower bound of $S_L$ is also a lower bound of $S_J$. Substituting we see that $m^*(A)\leq m^{*j}(A)$. \\
 	\end{proof}
-
-	For an example where $m^*(A)<m^{*j}(A)$, consider $f: [0,1] \to \mathbb{R}$ where
-	\[
-		f = 
-			\begin{cases}
-				1 \text{ if } x \in \mathbb{Q} \\
-				0 \text{ if } x \notin \mathbb{Q}
-			\end{cases}
-	\]
-	Define the set $A = \{(x,y) \in [0,1] \times [0,1] \vert y \leq f(x)\}$ (i.e. the area under the curve). Since this can be contained by a union of a countable number of boxes with zero width, it's clear that $m^*(A) = 0$ however $m^{*J}(A) = 1$ as we discussed in class.
+	
+	For an example where $m^*(A)<m^{*j}(A)$, consider $A = [0,1] \cap \mathbb{Q}$. It can be shown that $m_j(A)=1$. Also $A \subseteq \bigcup\limits_{x \in \mathbb{Q}}[x,x]$, but $m_j([x,x])=0$. and $\sum\limits_{x \in \mathbb{Q}}m_j([x,x]) = 0 < 1 = m_j(A)$. 
+	
+	%For an example where $m^*(A)<m^{*j}(A)$, consider $f: [0,1] \to \mathbb{R}$ where
+	%\[
+	%	f = 
+	%		\begin{cases}
+	%			1 \text{ if } x \in \mathbb{Q} \\
+	%			0 \text{ if } x \notin \mathbb{Q}
+	%		\end{cases}
+	%\]
+	%Define the set $A = \{(x,y) \in [0,1] \times [0,1] \vert y \leq f(x)\}$ (i.e. the area under the curve). Since this can be contained by a union of a countable number of boxes with zero width, it's clear that $m^*(A) = 0$ however $m^{*J}(A) = 1$ as we discussed in class.
 
 
 \problem{5.4} Show that Jordan outer measure does not satisfy countable subadditivity.
