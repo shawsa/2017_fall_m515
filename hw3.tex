@@ -35,14 +35,11 @@
 
 \problem{5.1} Tao ex 1.2.1. Show that the countable union of Jordan measurable sets need not be Jordan measurable, even when bounded. Show that the countable intersection of Jordan measurable sets need not be Jordan measurable.
 
+	\textit{Example:} Let $A = [0,1] \cap \mathbb{Q}$. Then $$A = \bigcup\limits_{x\ \in \mathbb{Q} \cap [0,1]}[x,x]$$ is a countable intersection of Jordan measurable sets (boxes in fact) that is not Jordan measurable since the upper Jordan measure is 1 and the lower Jordan measure is 0. \bigbreak
+
 	\textit{Example:} Let $A_x = [0,1]\setminus\{x\}$. Clearly $m_j(A_x)=1$ for any $x$. Now consider $\bigcap\limits_{x \in \mathbb{Q}}A_x = [0,1] \setminus \mathbb{Q}$. The finite intersection of any $A_n$ has Jordan measure 1, but the countable intersection has lower Jordan measure 0 and upper Jordan measure 1 and is therefore not Jordan measurable.\\
 	
 	
-	%Let $A = \{(x,y) \in [0,1] \times [0,1] \vert x \notin \mathbb{Q}\}$. Then $$A = ([0,1] \times [0,1]) \cap \bigcap\limits_{x\ \in \mathbb{Q}}([x,x]\times[0,1])$$ is a countable intersection of Jordan measurable sets (boxes in fact) that is not Jordan measurable since the upper Jordan measure is 1 and the lower Jordan measure is 0.
-
-
-
-
 \problem{5.2} Tao ex 1.2.2. Give an example of a sequence of uniformly bounded, Riemann integrable functions on $[0,1]$ which converges pointwise to a function that is not Riemann integrable. Is it possible to give an example which converges uniformly?
 
 	\textit{Example:} Let define $f_n:[0,1] \to \mathbb{R}$ for $n \in \mathbb{N}$ as follows: 
@@ -50,7 +47,7 @@
 		f_n = 
 			\begin{cases}
 				0 \text{ if } nx \in \mathbb{Z} \\
-				1 \text{ if } nx = \notin \mathbb{Z}
+				1 \text{ if } nx \notin \mathbb{Z}
 			\end{cases}
 	\]
 	Put simply, $f_n$ is a constant function with $n+1$ discontinuities at integer multiples of $1/n$. Clearly $\int f_n = 1$. See that $\{f_n\} \to f$ where
