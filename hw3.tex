@@ -46,11 +46,11 @@
 	\[
 		f_n = 
 			\begin{cases}
-				0 \text{ if } nx \in \mathbb{Z} \\
-				1 \text{ if } nx \notin \mathbb{Z}
+				0 \text{ if } mx \in \mathbb{Z} \text{ for some positive integer }m \leq n\\
+				1 \text{ else }
 			\end{cases}
 	\]
-	Put simply, $f_n$ is a constant function with $n+1$ discontinuities at integer multiples of $1/n$. Clearly $\int f_n = 1$. See that $\{f_n\} \to f$ where
+	Put simply, $f_n$ is a constant function discontinuities at integer multiples of $1/m$ for each positive integer less than $n$. Clearly $\int f_n = 1$. See that $\{f_n\} \to f$ where
 	\[
 		f = 
 			\begin{cases}
@@ -75,7 +75,7 @@
 	Notice then that $m^{*J}(A) = \text{inf}(S_J(A))$ and $m^{*}(A) = \text{inf}(S_L(A))$. By padding the finite set of boxes with the empty set (which is a box) we can see that $S_J(A) \subseteq S_L(A)$ and thus $\text{inf}(S_L(A)) \leq \text{inf}(S_J(A))$. This should be clear since any lower bound of $S_L$ is also a lower bound of $S_J$. Substituting we see that $m^*(A)\leq m^{*j}(A)$. \\
 	\end{proof}
 	
-	For an example where $m^*(A)<m^{*j}(A)$, consider $A = [0,1] \cap \mathbb{Q}$. It can be shown that $m_j(A)=1$. Also $A \subseteq \bigcup\limits_{x \in \mathbb{Q}}[x,x]$, but $m_j([x,x])=0$. and $\sum\limits_{x \in \mathbb{Q}}m_j([x,x]) = 0 < 1 = m_j(A)$. 
+	For an example where $m^*(A)<m^{*j}(A)$, consider $A = [0,1] \cap \mathbb{Q}$. It can be shown that $m^{*j}(A)=1$. Also $A \subseteq \bigcup\limits_{x \in \mathbb{Q}}[x,x]$, but $m_j([x,x])=0$. Then $m^*(A) = \sum\limits_{x \in \mathbb{Q}}m_j([x,x]) = 0 < 1 = m_j(A)$. 
 	
 	%For an example where $m^*(A)<m^{*j}(A)$, consider $f: [0,1] \to \mathbb{R}$ where
 	%\[
