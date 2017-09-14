@@ -50,7 +50,7 @@
 				1 \text{ else }
 			\end{cases}
 	\]
-	Put simply, $f_n$ is a constant function discontinuities at integer multiples of $1/m$ for each positive integer less than $n$. Clearly $\int f_n = 1$. See that $\{f_n\} \to f$ where
+	Put simply, $f_n$ is a constant function with discontinuities at integer multiples of $1/m$ for each positive integer less than $n$. So $f_2$ has discontinuities at 0, $\frac{1}{2}$, and 1. The next function $f_3$ has those discontinuities (since $2<3$) as well as $\frac{1}{3}$ and  $\frac{2}{3}$. Clearly $\int f_n = 1$. See that $\{f_n\} \to f$ where
 	\[
 		f = 
 			\begin{cases}
@@ -58,9 +58,23 @@
 				1 \text{ if } x \notin \mathbb{Q}
 			\end{cases}
 	\]
-	We demonstrated in class that $f$ is not Riemann integrable since $\underline{\int} f = 0$ and $\overline {\int} f = 1$.
+	We demonstrated in class that $f$ is not Riemann integrable since $\underline{\int} f = 0$ and $\overline {\int} f = 1$. \bigbreak
 	
-	\textbf{Prove second part}
+	\textbf{Theorem}\\
+	Let $\{f_n\}$ be a sequence of functions where each $f_n:[a,b] \to \mathbb{R}$ is Riemann integrable. If $\{f_n\}$ converges uniformly to $f:[a,b] \to \mathbb{R}$, then $f$ is Riemann integrable.
+	\begin{proof}
+		Let $\epsilon > 0$ be given. Then there exists some $N \in \mathbb{N}$ such that if $n \in \mathbb{N}$ and $N \leq n$, then $\vert f_n(x) - f(x) \vert < \text{min}\Big\{\frac{\epsilon}{3}, \frac{\epsilon}{3(b-a)}\Big\}$ by definition of uniform convergence. Since $f_n$ is Riemann integrable, we know there exists piecewise constant functions $\underline{h}_n$ and $\overline{h}_n$ such that $\underline{h}_n \leq f_n \leq \overline{h}_n$ and $\textit{pc}\int \overline{h}_n - \underline{h}_n < \frac{\epsilon}{3}$. Then
+		$$
+		\underline{h}_n - \frac{\epsilon}{3(b-a)} \leq f_n - \frac{\epsilon}{3(b-a)} \leq f \leq f_n + \frac{\epsilon}{3(b-a)} \leq \overline{h}_n +\frac{\epsilon}{3(b-a)}
+		$$
+		and 
+		\begin{align*}
+			\textit{pc}\int (\overline{h}_n +\frac{\epsilon}{3(b-a)}) & - (\underline{h}_n - \frac{\epsilon}{3(b-a)}) \\
+			& = \frac{2}{3}\epsilon + \textit{pc}\int \overline{h}_n - \underline{h}_n \\
+			& < \frac{2}{3}\epsilon + \frac{1}{3}\epsilon = \epsilon
+		\end{align*}
+		Thus $f$ is Riemann integrable.\\
+	\end{proof}
 
 
 
@@ -76,26 +90,28 @@
 	\end{proof}
 	
 	For an example where $m^*(A)<m^{*j}(A)$, consider $A = [0,1] \cap \mathbb{Q}$. It can be shown that $m^{*j}(A)=1$. Also $A \subseteq \bigcup\limits_{x \in \mathbb{Q}}[x,x]$, but $m_j([x,x])=0$. Then $m^*(A) = \sum\limits_{x \in \mathbb{Q}}m_j([x,x]) = 0 < 1 = m_j(A)$. 
-	
-	%For an example where $m^*(A)<m^{*j}(A)$, consider $f: [0,1] \to \mathbb{R}$ where
-	%\[
-	%	f = 
-	%		\begin{cases}
-	%			1 \text{ if } x \in \mathbb{Q} \\
-	%			0 \text{ if } x \notin \mathbb{Q}
-	%		\end{cases}
-	%\]
-	%Define the set $A = \{(x,y) \in [0,1] \times [0,1] \vert y \leq f(x)\}$ (i.e. the area under the curve). Since this can be contained by a union of a countable number of boxes with zero width, it's clear that $m^*(A) = 0$ however $m^{*J}(A) = 1$ as we discussed in class.
 
 
 \problem{5.4} Show that Jordan outer measure does not satisfy countable subadditivity.
 
-	\textit{Example:} consider the sets $A_n = [n,n+1] \times [0, 2^{-n}]$ for $n \in \mathbb{N}$. Clearly $m(A_n) = 2^{-n}$. Let $A = \bigcup\limits_{n \in \mathbb{N}}A_n$. Then either $m(A) = \infty$ or $m(A)$ does not exist, but $\sum\limits_{n \in \mathbb{N}}m(A_n) = 1$. That is that the countable sum of their measures is less than the measure of their countable union.
+	\textit{Example:} consider the sets $A_n = [n,n+1] \times [0, 2^{-n}]$ for $n \in \mathbb{N}$. Clearly $m(A_n) = 2^{-n}$. Let $A = \bigcup\limits_{n \in \mathbb{N}}A_n$. Then $\sum\limits_{n \in \mathbb{N}}m(A_n) = 1$, but consider $m^{*J}(A)$. Since $A$ is unbounded, any box that covers it will be unbounded as well. Since every $A_n$ has a height this unbounded box must also have a height in order to cover $A$. Clearly every elementary set that covers $A$ has infinite measure and $m(A) = \infty$ or $m(A)$ does not exist and the countable sum of their measures is less than the measure of their countable union.
 
 
 
-\problem{6.1}Tao ex 1.2.5. Suppose $A$ is expressible as a countable union of pairwise almost disjoint boxes. Show that $m^*(A)=m_{*j}(A)$
-
+\problem{6.1}Tao ex 1.2.5. Suppose $A$ is expressible as a countable union of pairwise almost disjoint boxes. Show that $m^*(A)=m_{*j}(A)$ 
+	\begin{proof}
+		Clearly $m_{*j}(A) \leq m^*(A)$ since every covering of $A$ contains $A$, and $A$ contains every set that it covers. \bigbreak
+		
+		From our preminse assume that $A = \bigcup\limits_{n \in \mathbb{N}}^\infty B_n$ where $B_n$ is a box and all the boxes are pairwise disjoint. By definition $m^*(A) \leq \sum\limits_{n=1}^\infty m(B_n)$. \bigbreak
+		
+		Then define $S_n = \bigcup\limits_{n=1}^k B_n$ is an elementary set and $S_n \subseteq A$ for every $n$. Note that since these boxes are almost disjoint, the measures of their pairwise intersections is $0$, thus 
+		$$m(S_n) = m\Big(\bigcup\limits_{n=1}^k B_n \Big) = \sum\limits_{n=1}^k m(B_n)$$
+		by finite additivity of elementary measure.
+		
+		Consider the sequence $\{m(S_n)\}$. Note that Since elementary measure is non-negative, this sequence is monotonically increasing. By definition it it bounded above by  $m_{*j}(A)$. Since $\lim\limits_{n \to \infty} m(S_n) = \sum\limits_{n=1}^\infty m(B_n) = m^*(A)$, we can say that $m^*(A) \leq m_{*j}(A)$. \bigbreak
+		
+		Thus $m^*(A)=m_{*j}(A)$.		
+	\end{proof}
 
 
 \end{document}
