@@ -42,23 +42,42 @@
 	
 \problem{5.2} Tao ex 1.2.2. Give an example of a sequence of uniformly bounded, Riemann integrable functions on $[0,1]$ which converges pointwise to a function that is not Riemann integrable. Is it possible to give an example which converges uniformly?
 
-	\textit{Example:} Let define $f_n:[0,1] \to \mathbb{R}$ for $n \in \mathbb{N}$ as follows: 
+%	\textit{Example:} Let define $f_n:[0,1] \to \mathbb{R}$ for $n \in \mathbb{N}$ as follows: 
+%	\[
+%		f_n = 
+%			\begin{cases}
+%				0 \text{ if } mx \in \mathbb{Z} \text{ for some positive integer }m \leq n\\
+%				1 \text{ else }
+%			\end{cases}
+%	\]
+%	Put simply, $f_n$ is a constant function with discontinuities at integer multiples of $1/m$ for each positive integer less than $n$. So $f_2$ has discontinuities at 0, $\frac{1}{2}$, and 1. The next function $f_3$ has those discontinuities (since $2<3$) as well as $\frac{1}{3}$ and  $\frac{2}{3}$. Clearly $\int f_n = 1$. See that $\{f_n\} \to f$ where
+%	\[
+%		f = 
+%			\begin{cases}
+%				0 \text{ if } x \in \mathbb{Q} \\
+%				1 \text{ if } x \notin \mathbb{Q}
+%			\end{cases}
+%	\]
+%	We demonstrated in class that $f$ is not Riemann integrable since $\underline{\int} f = 0$ and $\overline {\int} f = 1$. \bigbreak
+
+	\textit{Example:} Let $\mathbb{D} = \{\frac{m}{2^n} \vert n \in \mathbb{N},m \in \mathbb{Z}\}$ be the dyadic rationals.
+	Define $f_n:[0,1] \to \mathbb{R}$ for $n \in \mathbb{N}$ as follows: 
 	\[
 		f_n = 
 			\begin{cases}
-				0 \text{ if } mx \in \mathbb{Z} \text{ for some positive integer }m \leq n\\
+				0 \text{ if } 2^nx \in \mathbb{Z}\\
 				1 \text{ else }
 			\end{cases}
 	\]
-	Put simply, $f_n$ is a constant function with discontinuities at integer multiples of $1/m$ for each positive integer less than $n$. So $f_2$ has discontinuities at 0, $\frac{1}{2}$, and 1. The next function $f_3$ has those discontinuities (since $2<3$) as well as $\frac{1}{3}$ and  $\frac{2}{3}$. Clearly $\int f_n = 1$. See that $\{f_n\} \to f$ where
+	Put simply, $f_n$ is a constant function (hence bounded) with a finite number of discontinuities at integer multiples of $\frac{1}{2^n}$. Then $\int f_n = 1$. See that $\{f_n\} \to f$ (point-wise) where
 	\[
 		f = 
 			\begin{cases}
-				0 \text{ if } x \in \mathbb{Q} \\
-				1 \text{ if } x \notin \mathbb{Q}
+				0 \text{ if } x \in \mathbb{D} \\
+				1 \text{ if } x \notin \mathbb{D}
 			\end{cases}
 	\]
-	We demonstrated in class that $f$ is not Riemann integrable since $\underline{\int} f = 0$ and $\overline {\int} f = 1$. \bigbreak
+	Since the dyadic rationals are dense in $\mathbb{R}$, $f$ is not Riemann integrable. This can be shown the same way that we demonstrated in class that the Dirichlet function is not Riemann integrable since $\underline{\int} f = 0$ and $\overline {\int} f = 1$. \bigbreak
 	
 	\textbf{Theorem}\\
 	Let $\{f_n\}$ be a sequence of functions where each $f_n:[a,b] \to \mathbb{R}$ is Riemann integrable. If $\{f_n\}$ converges uniformly to $f:[a,b] \to \mathbb{R}$, then $f$ is Riemann integrable.
