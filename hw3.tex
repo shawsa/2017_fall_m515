@@ -119,15 +119,15 @@
 
 \problem{6.1}Tao ex 1.2.5. Suppose $A$ is expressible as a countable union of pairwise almost disjoint boxes. Show that $m^*(A)=m_{*j}(A)$ 
 	\begin{proof}
-		Clearly $m_{*j}(A) \leq m^*(A)$ since every covering of $A$ contains $A$, and $A$ contains every set that it covers. \bigbreak
+		Clearly $m_{*j}(A) \leq m^*(A)$ since every covering of $A$ contains $A$, and $A$ contains every set that it covers. This follows from monotonicity of $m^*$ and the fact that the upper Lebesgue measure of an elementary set is equal to its elementary measure. \bigbreak
 		
-		From our preminse assume that $A = \bigcup\limits_{n \in \mathbb{N}}^\infty B_n$ where $B_n$ is a box and all the boxes are pairwise disjoint. By definition $m^*(A) \leq \sum\limits_{n=1}^\infty m(B_n)$. \bigbreak
+		From our premise assume that $A = \bigcup\limits_{n \in \mathbb{N}}^\infty B_n$ where $B_n$ is a box and all the boxes are pairwise disjoint. By definition $m^*(A) \leq \sum\limits_{n=1}^\infty m(B_n)$. \bigbreak
 		
 		Then define $S_n = \bigcup\limits_{n=1}^k B_n$ is an elementary set and $S_n \subseteq A$ for every $n$. Note that since these boxes are almost disjoint, the measures of their pairwise intersections is $0$, thus 
 		$$m(S_n) = m\Big(\bigcup\limits_{n=1}^k B_n \Big) = \sum\limits_{n=1}^k m(B_n)$$
 		by finite additivity of elementary measure.
 		
-		Consider the sequence $\{m(S_n)\}$. Note that Since elementary measure is non-negative, this sequence is monotonically increasing. By definition it it bounded above by  $m_{*j}(A)$. Since $\lim\limits_{n \to \infty} m(S_n) = \sum\limits_{n=1}^\infty m(B_n) = m^*(A)$, we can say that $m^*(A) \leq m_{*j}(A)$. \bigbreak
+		Consider the sequence $\{m(S_n)\}$. Note that Since elementary measure is non-negative, this sequence is monotonically increasing. By definition it is bounded above by  $m_{*j}(A)$. Since $\lim\limits_{n \to \infty} m(S_n) = \sum\limits_{n=1}^\infty m(B_n) = m^*(A)$, we can say that $m^*(A) \leq m_{*j}(A)$. \bigbreak
 		
 		Thus $m^*(A)=m_{*j}(A)$.		
 	\end{proof}
