@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+
+
+% Math		****************************************************************************************
+\usepackage{fancyhdr} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+%\usepackage{dsfont}
+
+% Commands	****************************************************************************************
+\newcommand{\problem}[1]{\hspace{-4 ex} \large \textbf{#1}\\}
+
+%page		****************************************************************************************
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\doublespacing
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Shaw \space \thepage}
+\setlength\parindent{0pt}
+
+
+\begin{document}
+	\thispagestyle{empty}
+	
+	\begin{flushright}
+		Sage Shaw \\
+		m515 - Fall 2017 \\
+		\today
+	\end{flushright}
+	
+\large{\textbf{HW 4: 7.1, 7.2, 7.3, 8.1, 8.2}}\\
+
+\problem{7.1 (a)} Show that $A$ is measurable iff for all $\epsilon>0$ there exists a closed set $F\subset A$ such that $m^*(A\setminus F)<\epsilon$.
+
+\problem{7.1 (b)} Show that $A$ is measurable iff for all $\epsilon>0$ there exists a measurable set $B$ such that $m^*(A\triangle B)<\epsilon$.
+
+\problem{7.2} Show that any set $A$ is contained in a Lebesgue measurable set $B$ such that $m(B)=m^*(A)$.
+
+\problem{7.3} Show the \emph{inner regularity} property: If $A$ is Lebesgue measurable, then $m(A)=\text{sup}\{m(K)\mid K\subset A, K\text{ compact}\}$.
+
+\problem{8.1} Give a counterexample showing that the hypothesis that some $A_n$ has finite measure is necessary for the downwards MCT.
+
+\problem{8.2} Suppose you know that $m$ satisfies $m(\emptyset)=0$ and the countable additivity property. Show that $m$ satisfies the monotonicity property and the countable subadditivity property (for measurable sets).
+
+
+\end{document}
