@@ -35,7 +35,7 @@
 	
 \large{\textbf{HW 4: 7.1, 7.2, 7.3, 8.1, 8.2}}\\
 
-\problem{7.1 (a)} Show that $A$ is measurable iff for all $\epsilon>0$ there exists a closed set $F\subset A$ such that $m^*(A\setminus F)<\epsilon$.
+\problem{7.1 (a)} Show that $A$ is measurable iff for all $\epsilon>0$ there exists a closed set $F\subseteq A$ such that $m^*(A\setminus F)<\epsilon$.
 
 	\begin{proof}
 		Let $A$ be Lebesgue measurable and let $\epsilon > 0$ be given. \\
@@ -77,15 +77,39 @@
 		Since each $O_n$ is open (finite intersection of open sets) $\bigcap O_n$ is measurable and $m(\bigcap O_n) = m^*(A)$.
 	\end{proof}
 
-\problem{7.3} Show the \emph{inner regularity} property: If $A$ is Lebesgue measurable, then $m(A)=\text{sup}\{m(K)\mid K\subset A, K\text{ compact}\}$.
+\problem{7.3} Show the \emph{inner regularity} property: If $A$ is Lebesgue measurable, then $m(A)=\text{sup}\{m(K)\mid K\subseteq A, K\text{ compact}\}$.
+
+	\begin{proof}
+		Clearly $m(A)$ is an upper bound on $\{m(K)\mid K\subseteq A, K\text{ compact}\}$ from monotonicity. Let $\epsilon >0$ be given. It remains to show that there exists a compact set $K$, such that $K \subseteq A$ and $m(A \setminus K) < \epsilon$. \bigbreak
+		Suppose that $m(A)$ is bounded. Then from problem 7.1(a) we know that there exists a closed set $K$ such that $K \subseteq A$ and $m(A \setminus K) < \epsilon$. Since $K$ is closed and bounded it is compact. \bigbreak
+		
+		Suppose that $A$ is not bounded ...
+	\end{proof}
 
 \problem{8.1} Give a counterexample showing that the hypothesis that some $A_n$ has finite measure is necessary for the downwards MCT.
 
 	\begin{proof}
-		Consider the sequence of boxes $B_n = [0,\tfrac{1}{n}] \times [0, \infty)$. Clearly $B_{n+1} \subseteq B_n$ and $m(B_n)=\infty$ for each $n \in \mathbb{N}$. Thus $\lim_{n \to \infty}m(B_n) = \infty$ as well. However $\bigcap_{n=1}^{\infty}B_n = [0,0] \times [0,\infty)$ and has measure $0$.
+		Consider the sequence of boxes $B_n = [0,\tfrac{1}{n}] \times [0, \infty)$. Clearly $B_{n+1} \subseteq B_n$ and $m(B_n)=\infty$ for each $n \in \mathbb{N}$. Thus $\lim\limits_{n \to \infty}m(B_n) = \infty$ as well. However $\bigcap\limits_{n=1}^{\infty}B_n = [0,0] \times [0,\infty)$ and has measure $0$.
 	\end{proof}
 
-\problem{8.2} Suppose you know that $m$ satisfies $m(\emptyset)=0$ and the countable additivity property. Show that $m$ satisfies the monotonicity property and the countable subadditivity property (for measurable sets). (Morgan says that Sam said that we can assume the measurable sets form a sigma algebra.)
+\problem{8.2} Suppose you know that $m$ satisfies $m(\emptyset)=0$ and the countable additivity property. Show that $m$ satisfies the monotonicity property and the countable subadditivity property (for measurable sets). \textbf{Note:} Tao's version of this problem give us that $m$ maps all Lebesgue measurable sets into $[0,\infty]$. Since the Lebesgue measurable sets form a $\sigma$-algebra, the measurable sets by our measure will too.
 
+	\begin{proof}
+		Let $A$ and $B$ be sets such that $A \subseteq B$. By our assumption, $B \setminus A$ is measurable. Then
+		\begin{align*}
+			m(A) & \leq m(A) + m(B \setminus A) \text{\space \space (measure is positive)}\\
+			& = m(A \cup (B \setminus A)) \text{\space \space (disjoint)}\\
+			& = m(A \cup B) \\
+			& = m(B) \text{\space \space (subset)}
+		\end{align*}
+		Thus we have monotonicity of $m$. \bigbreak
+		Now suppose we have sets $A_n$ for $n \in \mathbb{N}$. \\
+		Let $C_n = A_n \setminus \bigcap\limits_{i \in \mathbb{N}, i \neq n}A_i$. Thus intuitively $C_n$ is now the elements of $A_n$ that are in no other $A_i$. We know that each $C_n$ is measurable by our assumption. Clearly $\bigcup C_n = \bigcup A_n$ and also $\{C_n\}$ are pairwise disjoint. Since $C_n \subseteq A_n$, we know that $m(C_n) \leq m(A_n)$. Then 
+		\begin{align*}
+			m \Big (\bigcup A_n \Big) & = m \Big( \bigcup C_n \Big) \\
+			& = \sum m(C_n) \text{\space \space (countable addititivity)} \\
+			& \leq \sum m(A_n)			
+		\end{align*}
+	\end{proof}
 
 \end{document}
