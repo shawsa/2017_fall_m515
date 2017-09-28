@@ -5,11 +5,14 @@
 \usepackage{fancyhdr} 
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{amsthm}
 %\usepackage{dsfont}
 
-% Commands	****************************************************************************************
+% Commands and Custom Variables	********************************************************************
 \newcommand{\problem}[1]{\hspace{-4 ex} \large \textbf{#1}\\}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
 
 %page		****************************************************************************************
 \usepackage[margin=1in]{geometry}
@@ -34,15 +37,55 @@
 
 \problem{7.1 (a)} Show that $A$ is measurable iff for all $\epsilon>0$ there exists a closed set $F\subset A$ such that $m^*(A\setminus F)<\epsilon$.
 
+	\begin{proof}
+		Let $A$ be Lebesgue measurable and let $\epsilon > 0$ be given. \\
+		Since $A$ is measurable, $A^c$ is measurable, and there exisists an open set $O$ such that $A^c \subseteq O$ and $m^*(O \setminus A^c) < \epsilon$. Then 
+		\begin{align*}
+			m^*(A \setminus O^c) & = m^*(A \cap (O^c)^c) \\
+			& = m^*(A \cap O) \\
+			& = m^*(O \setminus A^c) \\
+			& < \epsilon
+		\end{align*}
+		Since $O^c$ is closed, we've obtained our desired result. \bigbreak
+		
+		Now suppose that for all $\epsilon > 0$ there exist a closed set $F$ such that $F \subseteq A$ and $m^*(A \setminus F) < \epsilon$. \\
+		Let $\epsilon >0$ be given. Choose a closed set $F$ such that $F \subseteq A$ and $m^*(A \setminus F) < \epsilon$. Then
+		\begin{align*}
+			m^*(F^c \setminus A^c) & = m^*(F^c \cap A) \\
+			& = m^*(A \setminus F) \\
+			& < \epsilon
+		\end{align*}
+		Since $F^c$ is open, we can say that $A^c$ is Lebesgue measurable. Then $(A^c)^c = A$ is Lebesgue measurable as well.		
+	\end{proof}
+
 \problem{7.1 (b)} Show that $A$ is measurable iff for all $\epsilon>0$ there exists a measurable set $B$ such that $m^*(A\triangle B)<\epsilon$.
 
+	\begin{proof}
+		The first direction is trivial: if $A$ is measurable, then $A$ is a measurable set such that $m^*(A \setminus A) = m^*(\emptyset) < \epsilon$.
+	\end{proof}
+
 \problem{7.2} Show that any set $A$ is contained in a Lebesgue measurable set $B$ such that $m(B)=m^*(A)$.
+
+	\begin{proof}
+		First if $m^*(A) = \infty$, note that $A \subseteq \mathbb{R}^n$ and $m^*(A) = \infty = m^*(\mathbb{R}^n)$. Now suppose that $m^*(A)$ is finite. \\
+		Let $A$ be a set. From Lemma 6.5 it follows that for any $n \in \mathbb{N}$ there exisits an open set $O_n^\prime$ such that $m^*(O_n^\prime) - m^*(A) < \tfrac{1}{n}$ and $A \subseteq O_n^\prime$. Define $O_1 = O_1^\prime$, and $O_n = O_{n}^\prime \cap O_{n-1}$. Clearly, for each $n$, $O_{n+1} \subseteq O_n$, $A \subseteq O_n$, $m^*(O_n)$ is finite and $O_n$ is measurable. Using the Downward Monontone Convergence theorem we obtain the following
+		\begin{align*}
+			m^*(\bigcap O_n) & = \lim_{n \to \infty} m^*(O_n) \\
+			& \leq \lim_{n \to \infty} m^*(A) + \tfrac{1}{n} \\
+			& = m^*(A)
+		\end{align*}
+		Since each $O_n$ is open (finite intersection of open sets) $\bigcap O_n$ is measurable and $m(\bigcap O_n) = m^*(A)$.
+	\end{proof}
 
 \problem{7.3} Show the \emph{inner regularity} property: If $A$ is Lebesgue measurable, then $m(A)=\text{sup}\{m(K)\mid K\subset A, K\text{ compact}\}$.
 
 \problem{8.1} Give a counterexample showing that the hypothesis that some $A_n$ has finite measure is necessary for the downwards MCT.
 
-\problem{8.2} Suppose you know that $m$ satisfies $m(\emptyset)=0$ and the countable additivity property. Show that $m$ satisfies the monotonicity property and the countable subadditivity property (for measurable sets).
+	\begin{proof}
+		Consider the sequence of boxes $B_n = [0,\tfrac{1}{n}] \times [0, \infty)$. Clearly $B_{n+1} \subseteq B_n$ and $m(B_n)=\infty$ for each $n \in \mathbb{N}$. Thus $\lim_{n \to \infty}m(B_n) = \infty$ as well. However $\bigcap_{n=1}^{\infty}B_n = [0,0] \times [0,\infty)$ and has measure $0$.
+	\end{proof}
+
+\problem{8.2} Suppose you know that $m$ satisfies $m(\emptyset)=0$ and the countable additivity property. Show that $m$ satisfies the monotonicity property and the countable subadditivity property (for measurable sets). (Morgan says that Sam said that we can assume the measurable sets form a sigma algebra.)
 
 
 \end{document}
