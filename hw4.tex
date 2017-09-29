@@ -61,7 +61,15 @@
 \problem{7.1 (b)} Show that $A$ is measurable iff for all $\epsilon>0$ there exists a measurable set $B$ such that $m^*(A\triangle B)<\epsilon$.
 
 	\begin{proof}
-		The first direction is trivial: if $A$ is measurable, then $A$ is a measurable set such that $m^*(A \setminus A) = m^*(\emptyset) < \epsilon$.
+		The first direction is trivial: if $A$ is measurable, then $A$ is a measurable set such that $m^*(A \setminus A) = m^*(\emptyset) = 0 < \epsilon$. \bigbreak
+		Let $\epsilon > 0$ be given. From our premise there exists a measurable $B$ such that $m^*(A \Delta B) < \tfrac{\epsilon}{2}$. Clearly then, $m^*(A \setminus B) < \tfrac{\epsilon}{2}$. Since $B$ is measurable, there exists a closed set $F \subseteq B$ such that $m^*(B \setminus F) \tfrac{\epsilon}{2}$. Finally,
+		\begin{align*}
+			m^*(A \setminus F) & = m^*\Big((A \setminus B) \cup (B \setminus F)\Big) \\
+			& = m^*(A \setminus B) + m^*(B \setminus F) \\
+			& < \tfrac{\epsilon}{2} + \tfrac{\epsilon}{2} \\
+			& = \epsilon
+		\end{align*}
+		Thus by part a, $A$ is measurable.
 	\end{proof}
 
 \problem{7.2} Show that any set $A$ is contained in a Lebesgue measurable set $B$ such that $m(B)=m^*(A)$.
@@ -79,11 +87,24 @@
 
 \problem{7.3} Show the \emph{inner regularity} property: If $A$ is Lebesgue measurable, then $m(A)=\text{sup}\{m(K)\mid K\subseteq A, K\text{ compact}\}$.
 
+%	\begin{proof}
+%		Clearly $m(A)$ is an upper bound on $\{m(K)\mid K\subseteq A, K\text{ compact}\}$ from monotonicity. Let $\epsilon >0$ be given. It remains to show that there exists a compact set $K$, such that $K \subseteq A$ and $m(A \setminus K) < \epsilon$. \bigbreak
+%		Suppose that $m(A)$ is bounded. Then from problem 7.1(a) we know that there exists a closed set $K$ such that $K \subseteq A$ and $m(A \setminus K) < \epsilon$. Since $K$ is closed and bounded it is compact. \bigbreak
+%		
+%		Suppose that $A$ is not bounded ...
+%	\end{proof}
+	
 	\begin{proof}
-		Clearly $m(A)$ is an upper bound on $\{m(K)\mid K\subseteq A, K\text{ compact}\}$ from monotonicity. Let $\epsilon >0$ be given. It remains to show that there exists a compact set $K$, such that $K \subseteq A$ and $m(A \setminus K) < \epsilon$. \bigbreak
-		Suppose that $m(A)$ is bounded. Then from problem 7.1(a) we know that there exists a closed set $K$ such that $K \subseteq A$ and $m(A \setminus K) < \epsilon$. Since $K$ is closed and bounded it is compact. \bigbreak
-		
-		Suppose that $A$ is not bounded ...
+		Clearly $\{m(K)\mid K\subseteq A, K\text{ compact}\}$ is bounded above by $m(A)$. \\
+		It remains to show that for any $\epsilon > 0$, there exists a compact set $K$, such that $m(A) - m(K) < \epsilon$. Let $\epsilon > 0$ be given.
+		By the definition of outer Lebesgue measure there exists $\{B_n\}_{n=1}^\infty$ such that $A \subseteq \bigcup B_n$. \\% and $\sum\limits_{n=1}^\infty \text{vol}(B_n) = m(A) + \epsilon$.\\
+		Define $C_n = A \cap \bigcup\limits_{i=1}^n B_i = \bigcup\limits_{i=1}^n(A \cap B_i)$. Clearly $\bigcup\limits_{n=1}^\infty C_n = A$, $C_n \subseteq A$, each $C_n$ is bounded and $C_n \subseteq C_{n+1}$ for any $n \in \mathbb{N}$. So $\lim\limits_{n \to \infty}m(C_n) = m(A)$. By definition of limit, there exists an $N \in \mathbb{N}$ such that $m(A) - m(C_N) < \tfrac{\epsilon}{2}$. From problem 7.1(a) we know that there exists a closed set $F \subseteq C_N$ such that $m(C_N \setminus F) < \tfrac{\epsilon}{2}$. Since $C_N$ is bounded, $F$ is bounded, and is thus compact. Finally since $F \subseteq C_N \subseteq A$,
+		\begin{align*}
+			m(A) - m(F) & = m(A) - m(C_N) + m(C_N) -  m(F) \\
+			& = m(A \setminus C_N) + m(C_N \setminus F) \\
+			& < \tfrac{\epsilon}{2} + \tfrac{\epsilon}{2} \\
+			& = \epsilon
+		\end{align*}
 	\end{proof}
 
 \problem{8.1} Give a counterexample showing that the hypothesis that some $A_n$ has finite measure is necessary for the downwards MCT.
