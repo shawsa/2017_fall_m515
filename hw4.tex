@@ -78,7 +78,8 @@
 		First if $m^*(A) = \infty$, note that $A \subseteq \mathbb{R}^n$ and $m^*(A) = \infty = m^*(\mathbb{R}^n)$. Now suppose that $m^*(A)$ is finite. \\
 		Let $A$ be a set. From Lemma 6.5 it follows that for any $n \in \mathbb{N}$ there exisits an open set $O_n^\prime$ such that $m^*(O_n^\prime) - m^*(A) < \tfrac{1}{n}$ and $A \subseteq O_n^\prime$. Define $O_1 = O_1^\prime$, and $O_n = O_{n}^\prime \cap O_{n-1}$. Clearly, for each $n$, $O_{n+1} \subseteq O_n$, $A \subseteq O_n$, $m^*(O_n)$ is finite and $O_n$ is measurable. Using the Downward Monontone Convergence theorem we obtain the following
 		\begin{align*}
-			m^*(\bigcap O_n) & = \lim_{n \to \infty} m^*(O_n) \\
+			m^*\Big(\bigcap O_n \Big) & = \lim_{n \to \infty} m^*(O_n) \\
+			& \leq \lim_{n \to \infty} m^*(O_n^\prime) \\
 			& \leq \lim_{n \to \infty} m^*(A) + \tfrac{1}{n} \\
 			& = m^*(A)
 		\end{align*}
@@ -119,18 +120,33 @@
 		Let $A$ and $B$ be sets such that $A \subseteq B$. By our assumption, $B \setminus A$ is measurable. Then
 		\begin{align*}
 			m(A) & \leq m(A) + m(B \setminus A) \text{\space \space (measure is positive)}\\
-			& = m(A \cup (B \setminus A)) \text{\space \space (disjoint)}\\
+			& = m(A) + m(B \setminus A) + \sum_{n=3}^\infty m(\emptyset) \\
+			& = m\Big(A \cup (B \setminus A) \cup \bigcup_{n=3}^\infty \emptyset\Big) \text{\space \space (disjoint)}\\
 			& = m(A \cup B) \\
 			& = m(B) \text{\space \space (subset)}
 		\end{align*}
 		Thus we have monotonicity of $m$. \bigbreak
 		Now suppose we have sets $A_n$ for $n \in \mathbb{N}$. \\
-		Let $C_n = A_n \setminus \bigcap\limits_{i \in \mathbb{N}, i \neq n}A_i$. Thus intuitively $C_n$ is now the elements of $A_n$ that are in no other $A_i$. We know that each $C_n$ is measurable by our assumption. Clearly $\bigcup C_n = \bigcup A_n$ and also $\{C_n\}$ are pairwise disjoint. Since $C_n \subseteq A_n$, we know that $m(C_n) \leq m(A_n)$. Then 
+		Let $C_1 = A_1$ and $C_n = A_n \setminus \bigcup\limits_{i =1}^{n-1}C_i$ for $n>1$. Intuitively $C_n$ is now the elements of $A_n$ that are in no other $A_i$ for $i<n$. We know that each $C_n$ is measurable by our assumption. Clearly $\bigcup C_n = \bigcup A_n$ and our $C_n$ are pairwise disjoint (see lemma below, or don't). Since $C_n \subseteq A_n$, we know that $m(C_n) \leq m(A_n)$. Then 
 		\begin{align*}
 			m \Big (\bigcup A_n \Big) & = m \Big( \bigcup C_n \Big) \\
 			& = \sum m(C_n) \text{\space \space (countable addititivity)} \\
 			& \leq \sum m(A_n)			
 		\end{align*}
+	\end{proof}
+	\bigbreak
+	\bigbreak
+	
+	Since Daniel and Jordon are going to bother to prove that $\bigcup C_n = \bigcup A_n$ and also $\{C_n\}$ are pairwise disjoint, I might as well do it too...
+	
+\problem{Aforementioned Lemma...}
+	Given a countable collection of sets $\{A_n\}$. Define $C_1 = A_1$ and \\
+	$C_n = A_n \setminus \bigcup\limits_{i =1}^{n-1}C_i$ for $n>1$. Then our $C_n$ are pairwise disjoint and \\
+	$\bigcup C_n = \bigcup A_n$.
+	
+	\begin{proof}
+		Given $A_n$ and $C_n$ as defined above, let's show $\bigcup C_n = \bigcup A_n$. Clearly $\bigcup C_n \subseteq \bigcup A_n$ since $C_n \subseteq A_n$ for each $n \in \mathbb{N}$. Let $x \in \bigcup A_n$. Then $x \in A_k$ for some $k \in \mathbb{N}$. Since $C_n = A_n \setminus \bigcup\limits_{i =1}^{n-1}C_i$ either $x \in C_k$, or $x \in \bigcup\limits_{i =1}^{k-1}C_i$. Thus $x \in \bigcup C_n$. \bigbreak
+		Now we will prove that each $C_n$ is disjoint. Since $C_2 = A_2 \setminus C_1$, we know that $C_1$ and $C_2$ are disjoint. Now assume that for some $k \in \mathbb{N}$, $C_j$ and $C_k$ are disjoint for all $j \in \{1,2,...,k-1\}$. Since $C_{k+1} = A_{k+1} \ \bigcup\limits_{i =1}^{k}C_i$ we know that $C_j$ and $C_{k+1}$ are disjoint for all $j \in \{1,2,...,k\}$. Thus our $C_n$ are pairwise disjoint by induction.
 	\end{proof}
 
 \end{document}
