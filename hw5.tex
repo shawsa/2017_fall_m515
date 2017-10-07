@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+
+
+% Math		****************************************************************************************
+\usepackage{fancyhdr} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{dsfont}
+
+% Macros	****************************************************************************************
+\usepackage{calc}
+
+% Commands and Custom Variables	********************************************************************
+\newcommand{\problem}[1]{\hspace{-4 ex} \large \textbf{#1}\\}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\sint}{\text{s}\kern-5pt\int}
+
+%page		****************************************************************************************
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\doublespacing
+\allowdisplaybreaks
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Shaw \space \thepage}
+\setlength\parindent{0pt}
+
+%Code		****************************************************************************************
+\usepackage{listings}
+\usepackage{courier}
+\lstset{
+	language=Python,
+	showstringspaces=false,
+	formfeed=newpage,
+	tabsize=4,
+	commentstyle=\itshape,
+	basicstyle=\ttfamily,
+}
+
+%Images		****************************************************************************************
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+%Hyperlinks	****************************************************************************************
+%\usepackage{hyperref}
+%\hypersetup{
+%	colorlinks=true,
+%	linkcolor=blue,
+%	filecolor=magenta,      
+%	urlcolor=cyan,
+%}
+
+
+\begin{document}
+	\thispagestyle{empty}
+	
+	\begin{flushright}
+		Sage Shaw \\
+		m515 - Fall 2017 \\
+		\today
+	\end{flushright}
+	
+{\large \textbf{HW 5}}\bigbreak
+
+\problem{9.1} Show that a function $f$ is simple if and only if it can be expressed as $f=\sum_1^kc_i\chi_{A_i}$, where $A_i$ are (not necessarily disjoint) Lebesgue measurable sets.
+
+	\begin{proof}
+		Suppose that $f=\sum_1^kc_i\chi_{A_i}$ where $A_i$ are measurable sets.
+		Let $N = \mathbb{P}(\{1,...,k\})$ (power set). Clearly $N$ is finite. Let $N_i$ for $i=1,...,L$ denote the elements of $N$. Define
+		$$
+		B_i = \bigcap_{j \in N_i}A_j \setminus \bigcup_{j \notin N_i}A_j
+		$$
+		and define
+		$$
+		B_{L+1} = \mathbb{R}^d \setminus \bigcup_{i=1}^k A_i
+		$$
+		Note that since each $A_j$ is measurable $B_i$ is measurable. It's easy to see that the collection of $B_i$ is pairwise disjoint and $\bigcup_{i=1}^{L+1} B_i = \mathbb{R}^d$. If $x \in B_{L+1}$ then $f(x)=\sum_1^kc_i 0 = 0$ a constant value. If $x \in B_j$ for $j=1,...,L$, then $f(x) = \sum_{i \in N_j}c_i$ which is also a constant value. Since ${B_i}_{i=1}^{L+1}$ partition $\mathbb{R}^d$ into finitely many measurable sets on which $f$ takes a constant value, $f$ is simple by definition. \bigbreak
+		
+		The other direction is somewhat trivial. Suppose $f$ is simple. Then $f$ it assumes a constant value $c_i$ over a finite number of $A_i$. Then $f = \sum c_i \chi_{A_i}$.
+	\end{proof}
+
+\problem{9.2} Show that the simple integral satisfies the properties:
+	\begin{itemize}
+		\item \emph{finiteness}: $\sint f<\infty$ if and only if $f$ is finite almost everywhere and supported on a set of finite measure
+		\item \emph{vanishing}: $\sint f=0$ if and only if $f=0$ almost everywhere
+		\item \emph{normality}: $\sint\chi_A=m(A)$ for any Lebesgue measurable set $A$
+	\end{itemize}
+
+	\emph{finitiness}: \\
+	\begin{proof}
+		Suppose that $\sint f < \infty$. Then $f=\sum_1^kc_i m(A_i) < \infty$ implies that $c_i m(A_i) < \infty$ for each $i=1,...,k$. If $c_i$ is infinite then $m(A_i) = 0$. Thus $f$ is finite almost everywhere. If $m(A_i)$ is infinite then $c_i = 0$. Thus $f$ is supported on a set of finite measure (measure of union of $A_i$s is finite by subadditivity).\bigbreak
+		
+		Suppose that $f$ (a simple function) is finite almost everywhere and supported on a set of finite measure. Then for each $A_i$ on which $f$ assumes a constant value $c_i = \infty$ implies that $m(A_i) = 0$ (finite almost everywhere), and $m(A)=\infty$ implies that $c_i=0$ (supported on a set of finite measure). Thus $c_i m(A_i)$ is finite, and the finite sum of finite numbers is finite. Thus $\sint f < \infty$.
+	\end{proof}
+
+	\emph{vanishing}: \\
+	\begin{proof}
+		Suppose that $\sint f=0$. Since $f$ is nonnegative, $\sint f=0$ implies that each $c_i m(A_i)$ is zero for $i=1,...,k$. Thus $c_i = 0$ or $m(A_i)=0$. If $c_i \neq 0$ then $m(A_i)=0$. Since the union of Lebegue null sets is Lebesgue null (subaddititivity) $f=0$ almost everywhere. \bigbreak
+		Suppose that $f=0$ almost everywhere. Then for $\sint f = \sum_1^k c_i m(A_i)$, we know that if $c_i \neq 0$ that $m(A_i) = 0$. Thus $c_i m(A_i) = 0$ for each $i=1,...,k$ and the sum of zeros is zero. Thus $\sint f = 0$.
+	\end{proof}
+
+	\emph{normality}: \\
+	\begin{proof}
+		Let $A$ be a Lebesgue measurable set. Then $A^c$ is Lebesgue measurable as well and $\{A, A^c\}$ partition $\mathbb{R}^d$. Then $$\sint \chi_A = 1*m(A) + 0*m(A^c) = m(A)$$
+	\end{proof}
+	
+
+\problem{10.1} Show that $\lim x_n=x$ if and only if $\liminf x_n=x=\limsup x_n$.
+
+	\begin{proof}
+		Let $\epsilon >0$ be given and suppose that $\liminf{x_n} = x = \limsup{x_n}$. Since $\liminf{x_n} = x = \sup\limits_N \inf\limits_{n \geq N}x_n$, we know there exists $N_1$ such that \\$x - \inf\limits_{n \geq N_1} < \epsilon$. Then $x - \epsilon < \inf\limits_{n \geq N_1} \leq x_n$ and $x - x_n < \epsilon$ for $N_1 \leq n$. Since $\limsup{x_n} = x = \inf\limits_N \sup\limits_{n \geq N}x_n$, we know there exists $N_2$ such that \\$\sup\limits_{n \geq N_2} - x < \epsilon$. Then $x_n \leq \sup\limits_{n \geq N_2}x_n < x + \epsilon$ and $-\epsilon < x - x_n$ for $N_2 \leq n$. Let $N = \max\{N_1,N_2\}$. Then $-\epsilon < x - x_n < \epsilon$ and $\vert x - x_n \vert < \epsilon$. Thus $\lim x_n = x$. \bigbreak
+		
+		Suppose that $\lim x_n = x$ and $\liminf x_n = y$. Then for all $\epsilon > 0$ there exisits $N_1$ such that $y -  \inf\limits_{n \geq N_1}x_n < \tfrac{\epsilon}{2}$. Since $\lim x_n = x$ there exists some $N_2$ such that $\vert x - x_n \vert < \tfrac{\epsilon}{2}$ for all $n \geq N_2$. Let $N = \max\{N_1,N_2\}$. Then for all $n \geq N$
+		\begin{align*}
+			\vert y - x \vert & = \vert y - \inf\limits_{n \geq N}x_n + \inf\limits_{n \geq N}x_n - x \vert \\
+			& \leq \vert y - \inf\limits_{n \geq N}x_n \vert + \vert \inf\limits_{n \geq N}x_n - x \vert \\
+			& \leq \vert y - \inf\limits_{n \geq N_1}x_n \vert + \vert \inf\limits_{n \geq N}x_n - x \vert \\
+			& < \tfrac{\epsilon}{2} + \tfrac{\epsilon}{2} = \epsilon
+		\end{align*}
+		Thus $\liminf x_n = y = x$. \bigbreak
+		Suppose now that $\limsup x_n = w$. Then for all $\epsilon > 0$ there exisits $N_1$ such that $\sup\limits_{n \geq N_1}x_n - w < \tfrac{\epsilon}{2}$. Since $\lim x_n = x$ there exists some $N_2$ such that $\vert x - x_n \vert < \tfrac{\epsilon}{2}$ for all $n \geq N_2$. Let $N = \max\{N_1,N_2\}$. Then for all $n \geq N$
+		\begin{align*}
+			\vert x - w \vert & = \vert x - \sup\limits_{n \geq N}x_n + \sup\limits_{n \geq N}x_n - w \vert \\
+			& \leq \vert x - \sup\limits_{n \geq N}x_n \vert + \vert \sup\limits_{n \geq N}x_n - w \vert \\
+			& \leq \vert x - \sup\limits_{n \geq N}x_n \vert + \vert \sup\limits_{n \geq N_1}x_n - w \vert \\
+			& < \tfrac{\epsilon}{2} + \tfrac{\epsilon}{2} = \epsilon
+		\end{align*}
+		Thus $\limsup x_n = w = x$. \bigbreak
+	\end{proof}
+
+\problem{10.3} Show that if $f$ is a bounded, nonnegative measurable function on $\mathbb{R}^d$, then there is a sequence of bounded simple functions $f_n$ which converges uniformly to $f$ (not just pointwise).
+
+	\begin{proof}
+		Since $f$ is bounded and nonnegative, there exists $B$ such that \\$f(\mathbb{R}^d) \subseteq [0,B)$. Define $A_{n,i} = f^{-1}\Big( \big[\tfrac{Bi}{n}, \tfrac{B(i+1)}{n}\big)\Big)$ for $n \in \mathbb{N}$ and for $i=0,...,n-1$. Note that each $A_{n,i}$ is measurable since $\big[\tfrac{Bi}{n}, \tfrac{B(i+1)}{n}\big)$ can be written as a countable intersection of open sets. Also note that $\{A_{n,i}\}_{i=0}^{n-1}$ is a partition of the range of $f$ for each $n$. Now define 
+		$$f_n(x) = \Big\{\tfrac{Bi}{n} \text{ if }x\in A_n,i$$
+		Let $\epsilon > 0$ be given. By the Archemidian Property there exists $N \in \mathbb{N}$ such that $\tfrac{1}{\epsilon} < N$. Then for all $n\in \mathbb{N}$ such that $N \leq n$ and for all $x \in mathbb{R}^d$ there exists $i \in {0,...,n-1}$ such that $x \in A_{n,i}$. By definition $f(x) \in \big[\tfrac{Bi}{n}, \tfrac{B(i+1)}{n}\big)$ and $f_n(x) = \tfrac{Bi}{n}$. Clearly
+		$\vert f(x) - f_n(x) \vert < \tfrac{1}{n} \leq \tfrac{1}{N} < \epsilon$.
+	\end{proof}
+
+\problem{10.4} Let $f$ be a nonnegative function on $\mathbb{R}^d$. Show that $f$ is simple if and only if $f$ is measurable and takes on at most finitely many values.
+
+	\begin{proof}
+		If $f$ is simple clearly it takes on finitely many values and $\lim f = f$ thus $f$ is measurable. \bigbreak
+		
+		Suppose that $f$ is measurable and assumes finitely many values. 
+		Then $f(\mathbb{R}^d) = \{c_i\}_{i-1}^k$ for some some finite collection of distinct $c_i$. 
+		Since $f$ is measurable $f^{-1}\big(\{c_i\}\big)$ is Lebesgue measurable (since each point can be written as a countable union of open sets). 
+		Since $f$ is a well-defined function and our $c_i$ are distinct $f^{-1}\big(\{c_i\}\big) \cap f^{-1}\big(\{c_j\}\big) = \emptyset $ if $i \neq j$.
+		Clearly $\Big \{f \big(\{c_i\} \big) \Big\}_{i=1}^k$ is a partition of $\mathbb{R}^d$. Thus $f$ is simple. 
+	\end{proof}
+
+
+\end{document}

@@ -146,7 +146,9 @@
 	
 	\begin{proof}
 		Given $A_n$ and $C_n$ as defined above, let's show $\bigcup C_n = \bigcup A_n$. Clearly $\bigcup C_n \subseteq \bigcup A_n$ since $C_n \subseteq A_n$ for each $n \in \mathbb{N}$. Let $x \in \bigcup A_n$. Then $x \in A_k$ for some $k \in \mathbb{N}$. Since $C_n = A_n \setminus \bigcup\limits_{i =1}^{n-1}C_i$ either $x \in C_k$, or $x \in \bigcup\limits_{i =1}^{k-1}C_i$. Thus $x \in \bigcup C_n$. \bigbreak
-		Now we will prove that each $C_n$ is disjoint. Since $C_2 = A_2 \setminus C_1$, we know that $C_1$ and $C_2$ are disjoint. Now assume that for some $k \in \mathbb{N}$, $C_j$ and $C_k$ are disjoint for all $j \in \{1,2,...,k-1\}$. Since $C_{k+1} = A_{k+1} \ \bigcup\limits_{i =1}^{k}C_i$ we know that $C_j$ and $C_{k+1}$ are disjoint for all $j \in \{1,2,...,k\}$. Thus our $C_n$ are pairwise disjoint by induction.
+		Now we will prove that each $C_n$ is disjoint. For $C_i$ and $C_j$ where $i \neq j$, we can say without loss of generality that $i<j$. Then $C_i \subseteq \bigcup\limits_{k =1}^{i-1}C_k$. Then since $C_i = A_i \setminus \bigcup\limits_{k =1}^{i-1}C_k$ we know that $C_i$ and $C_j$ are disjoint.
+		
+%		Since $C_2 = A_2 \setminus C_1$, we know that $C_1$ and $C_2$ are disjoint. Now assume that for some $k \in \mathbb{N}$, $C_j$ and $C_k$ are disjoint for all $j \in \{1,2,...,k-1\}$. Since $C_{k+1} = A_{k+1} \ \bigcup\limits_{i =1}^{k}C_i$ we know that $C_j$ and $C_{k+1}$ are disjoint for all $j \in \{1,2,...,k\}$. Thus our $C_n$ are pairwise disjoint by induction.
 	\end{proof}
 
 \end{document}
