@@ -112,7 +112,7 @@
 \problem{10.1} Show that $\lim x_n=x$ if and only if $\liminf x_n=x=\limsup x_n$.
 
 	\begin{proof}
-		Let $\epsilon >0$ be given and suppose that $\liminf{x_n} = x = \limsup{x_n}$. Since $\liminf{x_n} = x = \sup\limits_N \inf\limits_{n \geq N}x_n$, we know there exists $N_1$ such that \\$x - \inf\limits_{n \geq N_1} < \epsilon$. Then $x - \epsilon < \inf\limits_{n \geq N_1} \leq x_n$ and $x - x_n < \epsilon$ for $N_1 \leq n$. Since $\limsup{x_n} = x = \inf\limits_N \sup\limits_{n \geq N}x_n$, we know there exists $N_2$ such that \\$\sup\limits_{n \geq N_2} - x < \epsilon$. Then $x_n \leq \sup\limits_{n \geq N_2}x_n < x + \epsilon$ and $-\epsilon < x - x_n$ for $N_2 \leq n$. Let $N = \max\{N_1,N_2\}$. Then $-\epsilon < x - x_n < \epsilon$ and $\vert x - x_n \vert < \epsilon$. Thus $\lim x_n = x$. \bigbreak
+		Let $\epsilon >0$ be given and suppose that $\liminf{x_n} = x = \limsup{x_n}$. Since $\liminf{x_n} = x = \sup\limits_N \inf\limits_{n \geq N}x_n$, we know there exists $N_1$ such that \\$x - \inf\limits_{n \geq N_1} x_n < \epsilon$. Then $x - \epsilon < \inf\limits_{n \geq N_1} x_n \leq x_n$ and $x - x_n < \epsilon$ for $N_1 \leq n$. Since $\limsup{x_n} = x = \inf\limits_N \sup\limits_{n \geq N}x_n$, we know there exists $N_2$ such that \\$\sup\limits_{n \geq N_2} x_n - x < \epsilon$. Then $x_n \leq \sup\limits_{n \geq N_2}x_n < x + \epsilon$ and $-\epsilon < x - x_n$ for $N_2 \leq n$. Let $N = \max\{N_1,N_2\}$. Then $-\epsilon < x - x_n < \epsilon$ and $\vert x - x_n \vert < \epsilon$. Thus $\lim x_n = x$. \bigbreak
 		
 		Suppose that $\lim x_n = x$ and $\liminf x_n = y$. Then for all $\epsilon > 0$ there exisits $N_1$ such that $y -  \inf\limits_{n \geq N_1}x_n < \tfrac{\epsilon}{2}$. Since $\lim x_n = x$ there exists some $N_2$ such that $\vert x - x_n \vert < \tfrac{\epsilon}{2}$ for all $n \geq N_2$. Let $N = \max\{N_1,N_2\}$. Then for all $n \geq N$
 		\begin{align*}
@@ -122,7 +122,7 @@
 			& < \tfrac{\epsilon}{2} + \tfrac{\epsilon}{2} = \epsilon
 		\end{align*}
 		Thus $\liminf x_n = y = x$. \bigbreak
-		Suppose now that $\limsup x_n = w$. Then for all $\epsilon > 0$ there exisits $N_1$ such that $\sup\limits_{n \geq N_1}x_n - w < \tfrac{\epsilon}{2}$. Since $\lim x_n = x$ there exists some $N_2$ such that $\vert x - x_n \vert < \tfrac{\epsilon}{2}$ for all $n \geq N_2$. Let $N = \max\{N_1,N_2\}$. Then for all $n \geq N$
+		Suppose now that $\limsup x_n = w$. Then for all $\epsilon > 0$ there exists $N_1$ such that $\sup\limits_{n \geq N_1}x_n - w < \tfrac{\epsilon}{2}$. Since $\lim x_n = x$ there exists some $N_2$ such that $\vert x - x_n \vert < \tfrac{\epsilon}{2}$ for all $n \geq N_2$. Let $N = \max\{N_1,N_2\}$. Then for all $n \geq N$
 		\begin{align*}
 			\vert x - w \vert & = \vert x - \sup\limits_{n \geq N}x_n + \sup\limits_{n \geq N}x_n - w \vert \\
 			& \leq \vert x - \sup\limits_{n \geq N}x_n \vert + \vert \sup\limits_{n \geq N}x_n - w \vert \\
@@ -136,8 +136,8 @@
 
 	\begin{proof}
 		Since $f$ is bounded and nonnegative, there exists $B$ such that \\$f(\mathbb{R}^d) \subseteq [0,B)$. Define $A_{n,i} = f^{-1}\Big( \big[\tfrac{Bi}{n}, \tfrac{B(i+1)}{n}\big)\Big)$ for $n \in \mathbb{N}$ and for $i=0,...,n-1$. Note that each $A_{n,i}$ is measurable since $\big[\tfrac{Bi}{n}, \tfrac{B(i+1)}{n}\big)$ can be written as a countable intersection of open sets. Also note that $\{A_{n,i}\}_{i=0}^{n-1}$ is a partition of the range of $f$ for each $n$. Now define 
-		$$f_n(x) = \Big\{\tfrac{Bi}{n} \text{ if }x\in A_n,i$$
-		Let $\epsilon > 0$ be given. By the Archemidian Property there exists $N \in \mathbb{N}$ such that $\tfrac{1}{\epsilon} < N$. Then for all $n\in \mathbb{N}$ such that $N \leq n$ and for all $x \in mathbb{R}^d$ there exists $i \in {0,...,n-1}$ such that $x \in A_{n,i}$. By definition $f(x) \in \big[\tfrac{Bi}{n}, \tfrac{B(i+1)}{n}\big)$ and $f_n(x) = \tfrac{Bi}{n}$. Clearly
+		$$f_n(x) = \Big\{\tfrac{Bi}{n} \text{ if }x\in A_{n,i}$$
+		Let $\epsilon > 0$ be given. By the Archemidian Property there exists $N \in \mathbb{N}$ such that $\tfrac{1}{\epsilon} < N$. Then for all $n\in \mathbb{N}$ such that $N \leq n$ and for all $x \in \mathbb{R}^d$ there exists $i \in {0,...,n-1}$ such that $x \in A_{n,i}$. By definition $f(x) \in \big[\tfrac{Bi}{n}, \tfrac{B(i+1)}{n}\big)$ and $f_n(x) = \tfrac{Bi}{n}$. Clearly
 		$\vert f(x) - f_n(x) \vert < \tfrac{1}{n} \leq \tfrac{1}{N} < \epsilon$.
 	\end{proof}
 
