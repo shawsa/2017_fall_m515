@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+
+
+% Math		****************************************************************************************
+\usepackage{fancyhdr} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{dsfont}
+
+% Macros	****************************************************************************************
+\usepackage{calc}
+
+% Commands and Custom Variables	********************************************************************
+\newcommand{\problem}[1]{\hspace{-4 ex} \large \textbf{Problem #1} }
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\sint}{\text{s}\kern-5pt\int}
+\newcommand{\powerset}{\mathcal{P}}
+\renewenvironment{proof}{\hspace{-4 ex} \emph{Proof}:}{\qed}
+
+%page		****************************************************************************************
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\doublespacing
+\allowdisplaybreaks
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Shaw \space \thepage}
+\setlength\parindent{0pt}
+
+%Code		****************************************************************************************
+\usepackage{listings}
+\usepackage{courier}
+\lstset{
+	language=Python,
+	showstringspaces=false,
+	formfeed=newpage,
+	tabsize=4,
+	commentstyle=\itshape,
+	basicstyle=\ttfamily,
+}
+
+%Images		****************************************************************************************
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+%tikz
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+
+%Hyperlinks	****************************************************************************************
+%\usepackage{hyperref}
+%\hypersetup{
+%	colorlinks=true,
+%	linkcolor=blue,
+%	filecolor=magenta,      
+%	urlcolor=cyan,
+%}
+
+
+\begin{document}
+	\thispagestyle{empty}
+	
+	\begin{flushright}
+		Sage Shaw \\
+		m515 - Fall 2017 \\
+		\today
+	\end{flushright}
+	
+{\large \textbf{HW 6}}\bigbreak
+
+\problem{10.1} Let $f$ be a nonnegative measurable function on $\mathbb{R}$. Show that $\int f$ is equal to the $2$-dimensional Lebesgue measure of the region $\{(x,y)\mid 0\leq f(x)\leq y\}$
+
+\problem{10.2} Let $f$ be an nonnegative measurable function on $\mathbb{R}^d$. Show that if $\int f<\infty$ then $f$ is finite almost everywhere. Give a counterexample to show that the converse is false. Show that $\int f=0$ if and only if $f=0$ almost everywhere.
+
+\problem{10.3} Give an example of a nonnegative function which is measurable, but has different lower and upper Lebesgue integrals.
+
+\problem{11.1} Let $f$ be absolutely integrable. Show that for any $\epsilon>0$ there exists a bounded measurable set $A$ such that $\int |f|\chi_{A^c}<\epsilon$.
+
+\problem{11.2} Let $f$ be a measurable set with finite measure support. Show that for any $\epsilon>0$, there exists a measurable set $A$ such that $m(A)<\epsilon$ and $f$ is locally bounded outside of $A$. In other words, for every $n$ there exists $M$ such that for all $x\in[-n,n]^d\setminus A$ we have $f(x)\leq M$.
+
+
+\end{document}
