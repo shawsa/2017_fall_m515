@@ -51,6 +51,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{pgfplots}
 
+%***************************************************************************************************
 %Hyperlinks	****************************************************************************************
 %\usepackage{hyperref}
 %\hypersetup{
@@ -72,15 +73,64 @@
 	
 {\large \textbf{HW 6}}\bigbreak
 
-\problem{10.1} Let $f$ be a nonnegative measurable function on $\mathbb{R}$. Show that $\int f$ is equal to the $2$-dimensional Lebesgue measure of the region $\{(x,y)\mid 0\leq f(x)\leq y\}$
+%***************************************************************************************************
+\problem{11.1} Let $f$ be a nonnegative measurable function on $\mathbb{R}$. Show that $\int f$ is equal to the $2$-dimensional Lebesgue measure of the region $\{(x,y)\mid 0\leq y \leq f(x) \}$
 
-\problem{10.2} Let $f$ be an nonnegative measurable function on $\mathbb{R}^d$. Show that if $\int f<\infty$ then $f$ is finite almost everywhere. Give a counterexample to show that the converse is false. Show that $\int f=0$ if and only if $f=0$ almost everywhere.
+	Truncate so that upper integral is lower integral and then use truncation lemmas to generalize.
 
-\problem{10.3} Give an example of a nonnegative function which is measurable, but has different lower and upper Lebesgue integrals.
+%***************************************************************************************************
+\problem{11.2} Let $f$ be an nonnegative measurable function on $\mathbb{R}^d$. Show that if $\int f<\infty$ then $f$ is finite almost everywhere. Give a counterexample to show that the converse is false. Show that $\int f=0$ if and only if $f=0$ almost everywhere.
 
-\problem{11.1} Let $f$ be absolutely integrable. Show that for any $\epsilon>0$ there exists a bounded measurable set $A$ such that $\int |f|\chi_{A^c}<\epsilon$.
+	\begin{proof}
+ 		Suppose that $\int f<\infty$ for some nonnegative measurable function $f$. Supose that $f$ were infinite on a set $A$ of positive measure. Then the simple function $\infty \chi_A \leq f$ but $\sint \infty \chi_A = \infty$ and thus $ \infty \leq \int f$ contradicts our premise. Thus $f$ is finite almost everywhere. \bigbreak
+ 		
+ 		Consider the function $f(x) = \sum\limits_{n\in \mathbb{N}} \chi_{[n, \infty)}$ (infitie steps). This function is finite everywhere but the integral is infinite. \bigbreak
+ 		
+ 		Suppose that $f(x)=0$ almost everywhere. Let $g \equiv 0$. Note that since $g = 0$ almost everywhere (everywhere in fact) that $\int f = \int g$ by proposition 11.2. Thuse $\int f = 0$.
+ 		
+ 		Suppose now that $\int f = 0$. Supose also that it is not the case that $f=0$ almost everywhere. In other words, let $A = \{x \vert f(x)>0\}$ and suppose that $m(A) > 0$. Let $A_n = f^{-1} \Big( (\tfrac{1}{n},\infty) \Big)$ for all $n \in \mathbb{N}$. Since $f$ is measurable and $(\tfrac{1}{n},\infty)$ is open, each $A_n$ is measurable. Also, $A_n \subseteq A_{n+1}$. Then by upwards monotone convergence
+ 		$$
+ 		0< m(A) = m \Big( \bigcup_{n \in \mathbb{N}} A_n \Big ) = \lim_{n \to \infty} m(A_n)
+ 		$$
+ 		If $m(A_n)=0$ for all $n \in \mathbb{N}$ then we would have a contradiction, therefore there is some $N \in \mathbb{N}$ such that $m(A_n)>0$. Then the simple function $g = \tfrac{1}{N}\chi_{A_N} \leq f$ and $\sint g = m(A_N)*\tfrac{1}{N} > 0$ and then $\int f >0$. Finally, by contradiction we have that $f=0$ almost everywhere.
+ 		
+	\end{proof}
 
-\problem{11.2} Let $f$ be a measurable set with finite measure support. Show that for any $\epsilon>0$, there exists a measurable set $A$ such that $m(A)<\epsilon$ and $f$ is locally bounded outside of $A$. In other words, for every $n$ there exists $M$ such that for all $x\in[-n,n]^d\setminus A$ we have $f(x)\leq M$.
+%***************************************************************************************************
+\problem{11.3} Give an example of a nonnegative function which is measurable, but has different lower and upper Lebesgue integrals.
 
+	Consider the function 
+	\[
+	f(x) = \begin{cases}
+		x^{-\frac{1}{2}} \text{ if } 0<x\\
+		0 \text{ else}
+	\end{cases}
+	\]
+	It can be shown that $ \underline{\int}f = \int f = 2$. Since $f$ is unbounded in any neighborhood about $0$ any simple function that is greater than or equal to $f$ will have a region of positive measure over which it assumes the value $\infty$. This will result in $\bar{\int}f = \infty$.
+	
+
+%***************************************************************************************************
+\problem{12.1} Let $f$ be absolutely integrable. Show that for any $\epsilon>0$ there exists a bounded measurable set $A$ such that $\int |f|\chi_{A^c}<\epsilon$.
+
+	\begin{proof}
+		Let $f$ be absolutely integrable. Let $\epsilon > 0 $ be given. Define $A_n = \{ \vec{x} \in \mathbb{R}^d \vert \norm{\vec{x}} < n \}$ (open ball of radius $n$) for every $n \in \mathbb{N}$. Clearly each $A_n$ is bounded and measurable. Define $f_n = \vert f \vert \chi_{A_n}$. Then $f_n$ converges to $\vert f \vert$ and $f_n \leq f_{n+1}$ so by monotone convergence we can say 
+		$$
+		\int \vert f \vert = \int \lim_{n \to \infty}{f_n} = \lim_{n \to \infty} \int f_n
+		$$
+		Then there exists some $N \in \mathbb{N}$ such that for all $n \geq N, \int \vert f \vert - \int f_n < \epsilon$. Let $A = A_N$. Then 
+		$$
+		\int |f|\chi_{A^c} = \int \vert f \vert - |f|\chi_{A} = \int \vert f \vert - \int f_n < \epsilon 
+		$$
+	\end{proof}
+
+%***************************************************************************************************
+\problem{12.2} Let $f$ be a finite measurable function with finite measure support. Show that for any $\epsilon>0$, there exists a measurable set $A$ such that $m(A)<\epsilon$ and $f$ is locally bounded outside of $A$. In other words, for every $n$ there exists $M$ such that for all $x\in[-n,n]^d\setminus A$ we have $ \vert f(x) \vert \leq M$.\bigbreak
+
+	\begin{proof}
+		Let $f$ be a finite measurable function. Let $S$ be the support of $f$ and let $m(S) = K$ for some finite $K$. Let $\epsilon > 0$ be given.\bigbreak
+		First suppose that $f$ is a real-valued, non-negative function with a bounded support.  Define $B_n = f^{-1}\Big( (0,n) \Big)$. Clearly $B_n \subseteq B_{n+1}$ and $\lim\limits_{n \to \infty} B_n = S$. By the monotone convergence theorem we have that $\lim\limits_{n \to \infty} m(B_n) = m(S)$. Then there exists some $N_1$ such that for all $n \geq N_1, m(S) - m(B_n) \leq \epsilon$. Define $A = S \setminus B_{N_1}$. Since $B_n \subseteq S$ we know that $m(A) \leq \epsilon$. Since we supposed that the support of $f$ was bounded, let $S \subseteq [-M,M]$. Then for all $x\in[-M,M]^d\setminus A$ we have $ \vert f(x) \vert \leq N_1$.\bigbreak
+		
+		Now consider the case when $S$ is not bounded. Let $D_n = [-n,n]^d \cap S$. Clearly $D_n \subseteq D_{n+1}$ and $\cup D_n = S$. Then 
+	\end{proof}
 
 \end{document}
