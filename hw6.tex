@@ -7,7 +7,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{dsfont}
+%\usepackage{dsfont}
 
 % Macros	****************************************************************************************
 \usepackage{calc}
@@ -74,25 +74,44 @@
 {\large \textbf{HW 6}}\bigbreak
 
 %***************************************************************************************************
-\problem{11.1} Let $f$ be a nonnegative measurable function on $\mathbb{R}$. Show that $\int f$ is equal to the $2$-dimensional Lebesgue measure of the region $\{(x,y)\mid 0\leq y \leq f(x) \}$
-
-	Truncate so that upper integral is lower integral and then use truncation lemmas to generalize.
+\problem{11.1} Let $f$ be a nonnegative measurable function on $\mathbb{R}$. Show that $\int f$ is equal to the $2$-dimensional Lebesgue measure of the region $R = \{(x,y)\mid 0\leq y \leq f(x) \}$
+	
+	\begin{proof}
+		First suppose that $f$ is bounded with bounded support. Then $\int f = \bar{\int} f$. Consider a simple function $g$ such that $f \leq g$. Since $g$ is simple, it can be written $g = \sum\limits_{n=1}^k c_n \chi_{A_n}$. Where each $A_n$ is disjoint and Lebesgue measurable. Then each $A_n$ can be written as the countable union of almost disjoint intervals (boxes in $\mathbb{R}$) $A_n = \bigcup\limits_{i \in \mathbb{N}}I_{i,n}$. Consider the countable union of almost disjoint boxes $A = \bigcup\limits_{i \in \mathbb{N}} \bigcup\limits_{n=1}^k c_n \times I_{i,n}$. It's easily seen that $R \subseteq A$ and 
+		$$
+		\sum\limits_{i \in \mathbb{N}} \sum\limits_{n=1}^k \text{vol}\big( c_n \times I_{i,n} \big) = m(A) =  \sum\limits_{n=1}^k c_n \Bigg( \sum\limits_{i \in \mathbb{N}} m(I_{i,n}) \Bigg) = \sint g
+		$$
+		Then clearly $m(R) \leq \bar{\int}f = \int f$. Suppose the support is bounded by $[-M,M]$, and $f$ is bounded by $N$. Then for any union of boxes $A$ such that $A \subseteq R$, $B \subseteq R$ and $m(B) \leq m(R)$ where
+		$$
+		B =  A \cap \big([-M,M] \times [0,N] \big)
+		$$
+		This is simply the region below a simple function for which the measure is the simple integral. Thus we have $\bar{\int}f \leq m(R)$, and thus $\int f = m(R)$. \bigbreak
+		
+		 Applying the truncation lemmas we generalize to the case where $f$ is not necessarily bounded, with potentially unbounded support.
+		
+		
+	\end{proof}
 
 %***************************************************************************************************
-\problem{11.2} Let $f$ be an nonnegative measurable function on $\mathbb{R}^d$. Show that if $\int f<\infty$ then $f$ is finite almost everywhere. Give a counterexample to show that the converse is false. Show that $\int f=0$ if and only if $f=0$ almost everywhere.
+\problem{11.2 (i)} Let $f$ be an nonnegative measurable function on $\mathbb{R}^d$. Show that if $\int f<\infty$ then $f$ is finite almost everywhere.
 
 	\begin{proof}
- 		Suppose that $\int f<\infty$ for some nonnegative measurable function $f$. Supose that $f$ were infinite on a set $A$ of positive measure. Then the simple function $\infty \chi_A \leq f$ but $\sint \infty \chi_A = \infty$ and thus $ \infty \leq \int f$ contradicts our premise. Thus $f$ is finite almost everywhere. \bigbreak
+ 		Suppose that $\int f<\infty$ for some nonnegative measurable function $f$. Supose that $f$ were infinite on a set $A$ of positive measure. Then the simple function $\infty \chi_A \leq f$ but $\sint \infty \chi_A = \infty$ and thus $ \infty \leq \int f$ contradicts our premise. Thus $f$ is finite almost everywhere.
+ 	\end{proof}
  		
+\problem{11.2 (ii)} Give a counterexample to show that the converse is false. \bigbreak
+
  		Consider the function $f(x) = \sum\limits_{n\in \mathbb{N}} \chi_{[n, \infty)}$ (infitie steps). This function is finite everywhere but the integral is infinite. \bigbreak
  		
- 		Suppose that $f(x)=0$ almost everywhere. Let $g \equiv 0$. Note that since $g = 0$ almost everywhere (everywhere in fact) that $\int f = \int g$ by proposition 11.2. Thuse $\int f = 0$.
+\problem{11.2 (iii)} Show that $\int f=0$ if and only if $f=0$ almost everywhere.
+	\begin{proof}
+ 		Suppose that $f(x)=0$ almost everywhere. Let $g \equiv 0$. Note that since $g = 0$ almost everywhere (everywhere in fact) that $\int f = \int g$ by proposition 11.2. Thus $\int f = 0$.
  		
- 		Suppose now that $\int f = 0$. Supose also that it is not the case that $f=0$ almost everywhere. In other words, let $A = \{x \vert f(x)>0\}$ and suppose that $m(A) > 0$. Let $A_n = f^{-1} \Big( (\tfrac{1}{n},\infty) \Big)$ for all $n \in \mathbb{N}$. Since $f$ is measurable and $(\tfrac{1}{n},\infty)$ is open, each $A_n$ is measurable. Also, $A_n \subseteq A_{n+1}$. Then by upwards monotone convergence
+ 		Suppose now that $\int f = 0$. Suppose also that it is not the case that $f=0$ almost everywhere. In other words, let $A = \{x \vert f(x)>0\}$ and suppose that $m(A) > 0$. Let $A_n = f^{-1} \Big( (\tfrac{1}{n},\infty) \Big)$ for all $n \in \mathbb{N}$. Since $f$ is measurable and $(\tfrac{1}{n},\infty)$ is open, each $A_n$ is measurable. Also, $A_n \subseteq A_{n+1}$. Then by upwards monotone convergence
  		$$
  		0< m(A) = m \Big( \bigcup_{n \in \mathbb{N}} A_n \Big ) = \lim_{n \to \infty} m(A_n)
  		$$
- 		If $m(A_n)=0$ for all $n \in \mathbb{N}$ then we would have a contradiction, therefore there is some $N \in \mathbb{N}$ such that $m(A_n)>0$. Then the simple function $g = \tfrac{1}{N}\chi_{A_N} \leq f$ and $\sint g = m(A_N)*\tfrac{1}{N} > 0$ and then $\int f >0$. Finally, by contradiction we have that $f=0$ almost everywhere.
+ 		If $m(A_n)=0$ for all $n \in \mathbb{N}$ then we would have a contradiction, therefore there is some $N \in \mathbb{N}$ such that $m(A_n)>0$. Then the simple function $g = \tfrac{1}{N}\chi_{A_N} \leq f$ and $\sint g = \tfrac{1}{N} m(A_N) > 0$ and then $\int f >0$. Finally, by contradiction we have that $f=0$ almost everywhere.
  		
 	\end{proof}
 
@@ -119,7 +138,7 @@
 		$$
 		Then there exists some $N \in \mathbb{N}$ such that for all $n \geq N, \int \vert f \vert - \int f_n < \epsilon$. Let $A = A_N$. Then 
 		$$
-		\int |f|\chi_{A^c} = \int \vert f \vert - |f|\chi_{A} = \int \vert f \vert - \int f_n < \epsilon 
+		\int |f|\chi_{A^c} = \int \vert f \vert - |f|\chi_{A} = \int \vert f \vert - \int f_N < \epsilon 
 		$$
 	\end{proof}
 
@@ -128,9 +147,11 @@
 
 	\begin{proof}
 		Let $f$ be a finite measurable function. Let $S$ be the support of $f$ and let $m(S) = K$ for some finite $K$. Let $\epsilon > 0$ be given.\bigbreak
-		First suppose that $f$ is a real-valued, non-negative function with a bounded support.  Define $B_n = f^{-1}\Big( (0,n) \Big)$. Clearly $B_n \subseteq B_{n+1}$ and $\lim\limits_{n \to \infty} B_n = S$. By the monotone convergence theorem we have that $\lim\limits_{n \to \infty} m(B_n) = m(S)$. Then there exists some $N_1$ such that for all $n \geq N_1, m(S) - m(B_n) \leq \epsilon$. Define $A = S \setminus B_{N_1}$. Since $B_n \subseteq S$ we know that $m(A) \leq \epsilon$. Since we supposed that the support of $f$ was bounded, let $S \subseteq [-M,M]$. Then for all $x\in[-M,M]^d\setminus A$ we have $ \vert f(x) \vert \leq N_1$.\bigbreak
+		First suppose that $f$ is a real-valued, non-negative function with a bounded support.  Define $B_n = f^{-1}\Big( (0,n) \Big)$. Clearly $B_n \subseteq B_{n+1}$ and $\lim\limits_{n \to \infty} B_n = S$. By the monotone convergence theorem we have that $\lim\limits_{n \to \infty} m(B_n) = m(S)$. Then there exists some $N_1$ such that for all $n \geq N_1, m(S) - m(B_n) < \epsilon$. Define $A = S \setminus B_{N_1}$. Since $B_n \subseteq S$ we know that $m(A) < \epsilon$. Since we supposed that the support of $f$ was bounded, let $S \subseteq [-M,M]$. Then for all $x\in[-M,M]^d\setminus A$ we have $ \vert f(x) \vert \leq N_1$.\bigbreak
 		
-		Now consider the case when $S$ is not bounded. Let $D_n = [-n,n]^d \cap S$. Clearly $D_n \subseteq D_{n+1}$ and $\cup D_n = S$. Then 
+		Now consider the case when $S$ is not bounded. Let $D_n = [-n,n]^d \cap S$. Clearly $D_n \subseteq D_{n+1}$ and $\cup D_n = S$. Then by monotone convergence we know that $\lim\limits_{n \to \infty} m(D_n) = m(S)$. Then there exists some $N_2$ such that $m(S \ D_{N_2}) < \tfrac{\epsilon}{2}$. Consider $f$ restricted to the domain of $D_{N_2}$. Then there is some $A_1 \subseteq D_{N_2}$ such that $m(A_1) < \tfrac{\epsilon}{2}$ and if $x \in D_{N_1}$ then $ \vert f(x) \vert \leq N_1$ for some $N_1$. Define $A = A_1 \cup (S \ D_{N_2})$. Then $m(A) < \epsilon$ and $f$ is locally bounded outside of $A$. \bigbreak
+		
+		To extend this argument to the general case, we first apply it to the case when $f$ is real valued by decomposing it like so $f = f^+ - f^-$ and then to the general case by noting that $f = \text{Re}(f) + i \text{Im}(f)$. In each generalization the argument is essentially the same.
 	\end{proof}
 
 \end{document}
