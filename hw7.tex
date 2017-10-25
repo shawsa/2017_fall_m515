@@ -1,0 +1,147 @@
+\documentclass[12pt]{article}
+
+%***************************************************************************************************
+% Math
+\usepackage{fancyhdr} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{dsfont}
+
+%***************************************************************************************************
+% Macros
+\usepackage{calc}
+
+%***************************************************************************************************
+% Commands and Custom Variables	
+\newcommand{\problem}[1]{\hspace{-4 ex} \large \textbf{Problem #1} }
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\sint}{\text{s}\kern-5pt\int}
+\newcommand{\powerset}{\mathcal{P}}
+\renewenvironment{proof}{\hspace{-4 ex} \emph{Proof}:}{\qed}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+
+
+%***************************************************************************************************
+%page
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+%\doublespacing
+\allowdisplaybreaks
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Shaw \space \thepage}
+\setlength\parindent{0pt}
+
+%***************************************************************************************************
+%Code
+\usepackage{listings}
+\usepackage{courier}
+\lstset{
+	language=Python,
+	showstringspaces=false,
+	formfeed=newpage,
+	tabsize=4,
+	commentstyle=\itshape,
+	basicstyle=\ttfamily,
+}
+
+%***************************************************************************************************
+%Images
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{float}
+
+%tikz
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+
+%***************************************************************************************************
+%Hyperlinks
+%\usepackage{hyperref}
+%\hypersetup{
+%	colorlinks=true,
+%	linkcolor=blue,
+%	filecolor=magenta,      
+%	urlcolor=cyan,
+%}
+
+\begin{document}
+	\thispagestyle{empty}
+	
+	\begin{flushright}
+		Sage Shaw \\
+		m515 - Fall 2017 \\
+		\today
+	\end{flushright}
+	
+{\Large \textbf{HW 7}}\bigbreak
+
+%***************************************************************************************************
+\problem{13.1 (Tao, ex 1.44, 1.45)}
+Let $A_n$ be measurable sets and assume that $\sum m(A_n)<\infty$. Show that almost every $x\in\RR^d$ is contained in at most finitely many of the $A_n$. [Hint: Use Tonelli's theorem on the functions $\chi_{A_n}$.] This is the Borel--Cantelli lemma.
+Give a counterexample to the above conclusion, showing that the hypothesis $\sum m(A_n)<\infty$ cannot be replaced by the weaker condition $\lim m(A_n)=0$. \bigbreak
+
+	\begin{proof}
+		Note that $m(\chi_{A_n}) = \int \chi_{A_n}$. By Tonelli's theorem we know that $\int \sum \chi_{A_n} = \sum \int \chi_{A_n} = \sum m(A_n) < \infty$. By exercise 11.2 from the last homework, $\sum \chi_{A_n} < \infty$ almost everywhere. For every $x \in \RR^d$, $\sum \chi_{A_n}(x) =$ the count of how many $A_n$ that contain $x$. This shows that almost every $x$ is contained in at most finitely many $A_n$. \bigbreak
+	\end{proof}
+
+	\bigbreak
+	
+	For the counter example consider the following sequence of sets. For every $ n \in \NN$ let $m$ be the largest integer such that $2^m \leq n$ and let $r = n - 2^m$ so that $2^m + r = n$. Then define $A_n = [r\tfrac{1}{2^m}, (1+r)\tfrac{1}{2^m}]$. A few examples follow
+	\begin{align*}
+		A_1 & = [0,1] \\
+		A_2 & = [0, \tfrac{1}{2}] & A_3 & = [\tfrac{1}{2}, 1]\\
+		A_4 & = [0, \tfrac{1}{4}] & A_5 & = [\tfrac{1}{4}, \tfrac{2}{4}] & A_6 & = [\tfrac{2}{4}, \tfrac{3}{4}] & A_7 & = [\tfrac{3}{4}, \tfrac{4}{4}] \\
+	\end{align*}
+	Clearly $m(A_n) = \tfrac{1}{2^m}$ and $\lim m(A_n)=0$, but, each $x \in [0,1]$ is in infinitely many $A_n$.
+
+\bigbreak
+
+
+%***************************************************************************************************
+\problem{Ex 14.1 (Tao, ex 1.4.26)} Let $\mu$ be a measure on $(X,\mathcal B)$. Show that $\mathcal B$ can be extended to $\sigma$-algebra $\hat{\mathcal B}$ and $\mu$ to a measure $\hat\mu$ on $(X,\hat{\mathcal B})$ in such a way that $\hat\mu$ is complete. \bigbreak
+
+
+\bigbreak
+%***************************************************************************************************
+\problem{Ex 14.2 (Tao, ex 1.4.49)} Let $f$ be a nonnegative Lebesgue measurable function. Show that $\mu(A)=\int f\chi_A$ is a measure. \bigbreak
+
+	\begin{proof}
+		First note that $\int f \chi_\emptyset = \int 0 = 0$. Now let $A_n$ be a countable collection of disjoint measurable sets. Then note that $\chi_{\bigcup A_n} = \sum \chi_{A_n}$. Finally
+		\begin{align*}
+			\mu \Big ( \bigcup A_n \Big ) & = \int f \chi_{\bigcup A_n} \\
+			& = \int f \sum \chi_{A_n} \\
+			& = \int \sum f \chi_{A_n} \\
+			& = \sum \int f \chi_{A_n} \text{\ \ \ (by Tonelli's)} \\
+			& = \sum \mu(A_n)
+		\end{align*}
+		Thus $\mu$ is a measure.
+	\end{proof}
+
+\bigbreak
+%***************************************************************************************************
+\problem{Ex 14.3 (Tao, ex 1.7.6)} Give an example of a finitely additive measure that is not a premeasure. [Hint: work on the measurable space $(\NN,\mathcal P(\NN))$ and define $\mu_0$ separately for finite and infinite sets.] \bigbreak
+
+	Define the finitely additive measure $\mu$ on $(\NN, \powerset(\NN))$ by
+	\[
+		\mu(A) = 
+			\begin{cases}
+				0 \text{ if $A$ is finite}\\
+				\infty \text{ if $A$ is infinite}
+			\end{cases}
+	\]
+	This is obviously finitely additive since the union of two finite sets is finite, but not a premeasure. Let $A_n = \{n\}$. Then $\bigcup A_n = \NN$, but 
+	$$
+	\mu \Big( \bigcup A_n \Big ) = \mu(\NN) = \infty \neq 0 = \sum 0 = \sum \mu(A_n)
+	$$
+
+\end{document}

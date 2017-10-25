@@ -77,18 +77,17 @@
 \problem{11.1} Let $f$ be a nonnegative measurable function on $\mathbb{R}$. Show that $\int f$ is equal to the $2$-dimensional Lebesgue measure of the region $R = \{(x,y)\mid 0\leq y \leq f(x) \}$
 	
 	\begin{proof}
-		First suppose that $f$ is bounded with bounded support. Then $\int f = \bar{\int} f$. Consider a simple function $g$ such that $f \leq g$. Since $g$ is simple, it can be written $g = \sum\limits_{n=1}^k c_n \chi_{A_n}$. Where each $A_n$ is disjoint and Lebesgue measurable. Then each $A_n$ can be written as the countable union of almost disjoint intervals (boxes in $\mathbb{R}$) $A_n = \bigcup\limits_{i \in \mathbb{N}}I_{i,n}$. Consider the countable union of almost disjoint boxes $A = \bigcup\limits_{i \in \mathbb{N}} \bigcup\limits_{n=1}^k c_n \times I_{i,n}$. It's easily seen that $R \subseteq A$ and 
+		First suppose that $f$ is bounded with bounded support. Then $\int f = \bar{\int} f$. Consider a simple function $g$ such that $f \leq g$. Since $g$ is simple, it can be written $g = \sum\limits_{n=1}^k c_n \chi_{A_n}$, where each $A_n$ is disjoint and Lebesgue measurable. Then each $A_n$ can be written as the countable union of almost disjoint intervals (boxes in $\mathbb{R}$) $A_n = \bigcup\limits_{i \in \mathbb{N}}I_{i,n}$. Consider the countable union of almost disjoint boxes $A = \bigcup\limits_{i \in \mathbb{N}} \bigcup\limits_{n=1}^k c_n \times I_{i,n}$. It's easily seen that $R \subseteq A$ and 
 		$$
 		\sum\limits_{i \in \mathbb{N}} \sum\limits_{n=1}^k \text{vol}\big( c_n \times I_{i,n} \big) = m(A) =  \sum\limits_{n=1}^k c_n \Bigg( \sum\limits_{i \in \mathbb{N}} m(I_{i,n}) \Bigg) = \sint g
 		$$
-		Then clearly $m(R) \leq \bar{\int}f = \int f$. Suppose the support is bounded by $[-M,M]$, and $f$ is bounded by $N$. Then for any union of boxes $A$ such that $A \subseteq R$, $B \subseteq R$ and $m(B) \leq m(R)$ where
+		Then clearly $m(R) \leq \bar{\int}f = \int f = \inf{\sint g}$. Suppose the support is bounded by $[-M,M]$, and $f$ is bounded by $N$. Then for any union of boxes $A$ such that $A \subseteq R$, $B \subseteq R$ and $m(B) \leq m(R)$ where
 		$$
 		B =  A \cap \big([-M,M] \times [0,N] \big)
 		$$
 		This is simply the region below a simple function for which the measure is the simple integral. Thus we have $\bar{\int}f \leq m(R)$, and thus $\int f = m(R)$. \bigbreak
 		
-		 Applying the truncation lemmas we generalize to the case where $f$ is not necessarily bounded, with potentially unbounded support.
-		
+		Applying the truncation lemmas we generalize to the case where $f$ is not necessarily bounded, with potentially unbounded support. Given any "domain truncation" $R_N = R \cap \Big( [-N,N] \times [0,\infty] \Big)$, we have that $R_N \subseteq R_{N+1}$ and, $\bigcup R_N = R$ so we can use UMCT to get that $\lim m(R_N) = m( \lim R_N) = m(R)$. This is similarly done with the range. 	
 		
 	\end{proof}
 
@@ -101,7 +100,7 @@
  		
 \problem{11.2 (ii)} Give a counterexample to show that the converse is false. \bigbreak
 
- 		Consider the function $f(x) = \sum\limits_{n\in \mathbb{N}} \chi_{[n, \infty)}$ (infitie steps). This function is finite everywhere but the integral is infinite. \bigbreak
+ 		Consider the function $f(x) = \sum\limits_{n\in \mathbb{N}} \chi_{[n, \infty)}$ (infinite steps). This function is finite everywhere but the integral is infinite. \bigbreak
  		
 \problem{11.2 (iii)} Show that $\int f=0$ if and only if $f=0$ almost everywhere.
 	\begin{proof}
