@@ -7,7 +7,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{dsfont}
+%\usepackage{dsfont}
 
 %***************************************************************************************************
 % Macros
@@ -173,15 +173,37 @@ Show that sums and products of measurable functions are measurable. \bigbreak
 	
 	A similar argument shows that the preimage of an open ray of the form $(t, \infty)$ is $\mu$-measurable. Arbitrary open intervals are intersections of open rays, and since $\BB$ is closed under intersection, the preimage of open intervals is in $\BB$. Every open set can be represented as the countable union of open intervals. Since $\BB$ is closed under countable unions, and countable unions of countable unions are still countable unions (my set theory friends assure me), $f+g$ is $\mu$-measurable. \bigbreak
 	
-	Now we must show that $f*g$ is $\mu$-measurable.
+	Now we must show that $f*g$ is $\mu$-measurable. First suppose that $f$ and $g$ are non-negative, and consider the open ray $t,\infty)$. If $t<0$ then this is trivial. Suppose $t>0$. Then it is the case that
+	$$
+	(fg)^{-1}\big( (t,\infty) \big) = \bigcup_{r \in \QQ} \Big[ f^{-1}\big( (r, \infty) \big) \cap g^{-1}\big( (\tfrac{t}{r}, \infty) \big) \Big]
+	$$
+	This is shown similarly to the above case, and for the same reasons shows that $fg$ is $\mu$-measurable. Now we consider the open ray $(-\infty, t)$. Since $f$ and $g$ are non-negative, $fg$ is non-negative and 
+	$$
+	(fg)^{-1}\big( (-\infty, t) \big ) = (fg)^{-1}\big( [0, t) \big ) = (fg)^{-1}\big( \{0\} \big ) \cup (fg)^{-1}\big( (0, t) \big )
+	$$
+	As above, $(fg)^{-1}\big( \{0\} \big ) = f^{-1}\big( \{0\} \big ) \cup g^{-1}\big( \{0\} \big )$ is $\mu$-measurable. Also similarly to before
+	$$
+	(fg)^{-1}\big( (0, t) \big ) = \bigcup_{r \in \QQ} \Big[ f^{-1}\big( (0, r) \big) \cap g^{-1}\big( (0,\tfrac{t}{r}) \big) \Big]
+	$$
+	is $\mu$-measurable. \bigbreak
+	
+	Finally, for arbitrary $f$ and $g$, 
+	$$
+	fg = (f^+ - f^-)(g^+ - g^-) = (f^+g^+ + f^-g^-) - (f^+g^- + f^-g^+)
+	$$
+	This is simply the finite sum of products of non-negative functions and is thus measurable. There is the small issue of the subtraction. That is easily overcome since $n(x)=-x$ is continuous, and hence $n(f(O))$ is measurable for any open set $O$. 
 	
 \end{proof}
 
 
 \bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\problem{16.2} Establish the support truncation property: if $A_n$ is a sequence of measurable sets such that $A_n\subset A_{n+1}$ and $\bigcup A_n=X$, then $\int f\chi_{A_n},d\mu\to\int f,d\mu$.
+\problem{16.2} Establish the support truncation property: if $A_n$ is a sequence of measurable sets such that $A_n\subset A_{n+1}$ and $\bigcup A_n=X$, then $\int f\chi_{A_n} d\mu\to\int f d\mu$.
 \bigbreak
+
+\begin{proof}
+	Let $(X,\BB,\mu)$ be a measure space, and let $f:X \to [0,\infty]$ be a $\mu$-measurable function. Let $A_n$ be a sequence of measurable functions such that $A_n \subseteq A_{n+1}$ for all $n \in \NN$ and $\bigcup A_n = X$.
+\end{proof}
 
 
 \end{document}
