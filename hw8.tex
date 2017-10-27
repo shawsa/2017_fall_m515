@@ -107,6 +107,27 @@ Let $(X, \SA,\mu_0)$ be a premeasure and let $(X,\mathcal B,\mu)$ be the Carath\
 \problem{15.2} Let $(X,\mathcal A,\mu_0)$ be a premeasure, $\mu^*$ the corresponding outer measure, and $(X,\mathcal B,\mu)$ the Carath\'eodory extension. Show that for any set $B$ such that $\mu^*(B)<\infty$, we have $B\in\mathcal B$ if and only if for all $\epsilon>0$ there exists $A\in\mathcal A$ such that $\mu^*(A\triangle B)<\epsilon$.
 \bigbreak
 
+\begin{proof}
+	
+	$\Longrightarrow$
+	
+	Let $B \in \BB$ and let $\epsilon > 0$ be given. Then there exists a collection of $A_n \in \SA$ such that $B \subseteq \bigcup A_n$ and $\sum \mu_0(A_n) - \mu(B) < \tfrac{\epsilon}{2}$. Then clearly $\sum \mu_0(A_n)$ is finite and converges. Thus there exists some $N \in \NN$ such that $\sum\limits_{n=1}^\infty \mu_0(A_n) - \sum\limits_{n=1}^N \mu_0{A_n} < \tfrac{\epsilon}{2}$. Let $A = \bigcup\limits_{n=1}^N A_n$. Then $A \in \SA$ and 
+	\begin{align*}
+		\mu^*(A \bigtriangleup B) 
+		& = \mu^* \big( (A \setminus B) \cup (B \setminus A) \big ) \\
+		& = \mu^*(A \setminus B) + \mu^*(B \setminus A) \\
+		& \leq  \mu^* \Big( \bigcup A_n \setminus B \Big ) + \mu^* \Big( \bigcup A_n \setminus A \Big ) \\
+		& < \tfrac{\epsilon}{2} + \tfrac{\epsilon}{2}
+	\end{align*}
+	
+	$\Longleftarrow$
+	
+	Let $B \subseteq X$ such that $\mu^*(B) < \infty$. Suppose that for all $\epsilon > 0$ there exists an $A \in \SA$ such that $\mu^*(A \bigtriangleup B) < \epsilon$. 
+	
+	\bigbreak \textbf{**************** finish other direction ********************} \\
+	for all $S \subseteq X, \mu^*(S) = \mu^*(S \cap B) + \mu^*(S \cap B^C)$
+	
+\end{proof}
 
 
 \bigbreak
