@@ -122,11 +122,37 @@ Let $(X, \SA,\mu_0)$ be a premeasure and let $(X,\mathcal B,\mu)$ be the Carath\
 	
 	$\Longleftarrow$
 	
-	Let $B \subseteq X$ such that $\mu^*(B) < \infty$. Suppose that for all $\epsilon > 0$ there exists an $A \in \SA$ such that $\mu^*(A \bigtriangleup B) < \epsilon$. 
-	
-	\bigbreak \textbf{**************** finish other direction ********************} \\
-	for all $S \subseteq X, \mu^*(S) = \mu^*(S \cap B) + \mu^*(S \cap B^C)$
-	
+	Let $B \subseteq X$ such that $\mu^*(B) < \infty$. Suppose that for each $\epsilon > 0$ there exists an $A \in \SA$ such that $\mu^*(A \bigtriangleup B) < \epsilon$. Let $S \subseteq X$. From subadditivity we have that 
+	$$
+	\mu^*(S) \leq \mu^*(S \cap B) + \mu(S \cap B^*)
+	$$
+	From set theory we know that
+	$$
+	S \cap B = (S \cap B \cap A) \cup (S \cap B \cap A^c)
+	$$$$
+	S \cap B^c = (S \cap B^c \cap A) \cup (S \cap B^c \cap A^c)
+	$$
+	Since $A$ is measurable we have that 
+	\begin{align*}
+		\mu^*(S \cap B) & = \mu^*(S \cap B \cap A) + \mu^*(S \cap B \cap A^c) \\
+		\mu^*(S \cap B^c) & = \mu^*(S \cap B^c \cap A) + \mu^*(S \cap B^c \cap A^c)
+	\end{align*}
+	Again from set theory we know that $A \bigtriangleup B = A^c \bigtriangleup B^c$ and so by monotonicity we have
+	\begin{align*}
+		\mu^*(S \cap B) & \leq \mu^*(S \cap B \cap A) + \epsilon \\
+		\mu^*(S \cap B^c) & \leq \epsilon + \mu^*(S \cap B^c \cap A^c)
+	\end{align*}
+	Then
+	\begin{align*}
+		\mu^*(S \cap B) + \mu^*(S \cap B^c) & \leq 2\epsilon + \mu^*(S \cap B \cap A) + \mu^*(S \cap B^c \cap A^c) \\
+		& \leq 2\epsilon + \mu^*(S \cap A) + \mu^*(S \cap A^c) \text{    (by monotonicity)} \\
+		& = 2\epsilon + \mu^*(S) \text{ (since $A$ is measurable)}
+	\end{align*}
+	Now we have that for all $\epsilon$
+	$$
+	\mu^*(S) \leq \mu^*(S \cap B) + \mu(S \cap B^*) \leq 2\epsilon + \mu^*(S)
+	$$
+	Taking $\epsilon$ to zero we have that $\mu^*(S) = \mu^*(S \cap B) + \mu(S \cap B^*)$ and $B$ is measurable.	
 \end{proof}
 
 
@@ -228,7 +254,7 @@ Show that sums and products of measurable functions are measurable. \bigbreak
 
 \bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\problem{16.2} Establish the support truncation property: if $A_n$ is a sequence of measurable sets such that $A_n\subset A_{n+1}$ and $\bigcup A_n=X$, then $\int f\chi_{A_n} d\mu\to\int f d\mu$.
+\problem{16.2} Establish the support truncation property: if $A_n$ is a sequence of measurable sets such that $A_n\subseteq A_{n+1}$ and $\bigcup A_n=X$, then $\int f\chi_{A_n} d\mu\to\int f d\mu$.
 \bigbreak
 
 \begin{proof}
