@@ -143,14 +143,32 @@ Verify that $p$ is a sublinear functional such that $\lim x\leq p(x)$. If we app
 			& \leq \limsup_{n\to\infty}\frac{x_1+\cdots+x_n}{n} + \limsup_{n\to\infty} \frac{y_1+\cdots+y_n}{n}\\
 			& = p(x) + p(y)
 		\end{align*}
-		Thus $p$ is a sublinear functional.
+		Thus $p$ is a sublinear functional. \\
+		Suppose that $\lim x = L$. Let $\epsilon > 0$ be given. Then there exists an $N$ such that if $N \leq n$ then $\vert x_n - L \vert < \epsilon$. Then
+		\begin{align*}
+			\lim & \frac{x_1 + \dots +x_N + x_{N+1} + \dots + x_n}{n}\\
+			& = \lim \frac{x_1 + \dots + x_n}{n} -L +L \\
+			& = L + \lim \frac{x_1 + \dots + x_n}{n} -\frac{nL}{n} \\
+			%& = L + \lim \frac{x_1 + \dots +x_N + x_{N+1} + \dots + x_n - nL}{n} \\
+			& = L + \lim \frac{(x_1-L) + \dots  + (x_n-L)}{n} \\
+			%& = L + \lim \frac{(x_1-L) + \dots + (x_N-L) + (x_{N+1}-L) + \dots + (x_n-L)}{n} \\
+			& = L + \lim \frac{(x_1-L) + \dots + (x_N-L)}{n} + \lim \frac{(x_{N+1}-L) + \dots + (x_n-L)}{n} \\
+			& = L + \lim \frac{(x_{N+1}-L) + \dots + (x_n-L)}{n}
+		\end{align*}
+		In considering the above limit, note that
+		$$
+		-\epsilon = \frac{ -\epsilon - \dots	- \epsilon}{n} < \frac{(x_{N+1}-L) + \dots + (x_n-L)}{n} < \frac{ \epsilon + \dots	+ \epsilon}{n} = \epsilon
+		$$
+		Taking $\epsilon$ to zero we have that $\lim x = p(x)$. Thus $\lim x \leq p(x)$. 
 		
-		\textbf{******************* Show that $\lim x \leq p(x)$ ****************}
+		\textbf{******************* the other stuff  ****************}
 	\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \problem{18.3}
 Ex 18.3. Let $\RR^d$ be equipped with any norm that makes it into a normed vector space. Show that every linear functional on $\RR^d$ is continuous.
 
-
+	\begin{proof}
+		We know that every linear functional on $\RR^d$ is a dual vector, so it is sufficient to show that any dual vector $T=[a_1\ a_2\ \dots a_d]$ is continuous. 
+	\end{proof}
 \end{document}
