@@ -211,6 +211,36 @@ Ex 18.3. Let $\RR^d$ be equipped with any norm that makes it into a normed vecto
 	\begin{proof}
 		We know that every linear functional on $\RR^d$ is a dual vector, so it is sufficient to show that any dual vector $T=[a_1\ a_2\ \dots a_d]$ is continuous. \bigbreak
 		
-		I'm not sure how to do this proof. I can try to show that it's bounded. I suspect that $\vert Tx \vert \leq \norm{T}\norm{x}$ where $\norm{T}$ refers to the norm of the vector with the same values as the dual vector T, but I'm not sure how to show it. If this were the standard euclidian norm then it would be much more approachable. This looks similar to the Cauchy Schwartzs inequality, but we only have that for bounded linear operators.
+		I got pretty stuck here, but Gianni passed along some advice from you that helped. \bigbreak
+		
+		\textit{First show that every norm is equivalent to the one-norm.} \\		
+		Let $\norm{\cdot}$ denote an arbitrary norm and let $\norm{\cdot}_1$ denote the one-norm. Let $x \in \RR^d$. Suppose that $\{u_i\}_{i=1}^d$ is the basis of vectors such that $(u_i)_i = 1$ and $(u_i)_j = 0$ if $i \neq j$. Then $x = \sum x_i u_i$ and
+		$$
+		\norm{x} = \norm{\sum x_i u_i} \leq \sum \vert x_i \vert \norm{u_i} \leq \sum \vert x_i \vert \max\{\norm{u_i}\} \leq \norm{x}_1 \max \norm{u_i}
+		$$
+		Since there are only a finite number of dimentions, $\max \norm{u_i}$ is well defined. This argument would not hold in the infinite dimensional case.
+
+		\bigbreak
+		\textit{Next show that the one-norm is continuous.}\\
+		\begin{align*}
+			\vert Tx \vert & = \Big \vert \sum a_i x_i \Big \vert \\
+			& \leq \sum \vert a_i x_i \vert \\
+			& \leq \sum \vert x_i \vert \max \vert a_i \vert \\
+			& = \max \vert a_i \vert \sum \vert x_i \vert \\
+			& = \max \vert a_i \vert \norm{x}_1
+		\end{align*}
+		Thus each dual vector is bounded by the absolute value of its largest (in magnitude) element.
+		
+		\bigbreak
+		\textit{Last put it together to show that any norm is continuous.} \\
+		Since $\norm{\cdot}_1$ is continous and the unit sphere is compact, we may define\\ $M = \max\limits_{ \{x: \norm{x}_1 = 1 \} } \norm{x}$. Then
+		\begin{align*}
+			\vert Tx \vert & = \vert T \norm{x}_1\frac{x}{\norm{x}_1} \vert \\
+				& = \norm{x}_1 \vert T\frac{x}{\norm{x}_1} \vert \\
+				& ...
+		\end{align*}
+		Partial credit?
+		
+		
 	\end{proof}
 \end{document}
