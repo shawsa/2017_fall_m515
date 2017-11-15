@@ -122,6 +122,32 @@ Ex 17.3 (12:3.1). Consider the operators $D(f)=f^\prime$, $(Sf)(x)=\int_a^x fd\m
 		$$
 		for a constant $C$ that we need not compute. Since the norm of the deriviative is dependent on $n$ which can get arbitrarily large, $D$ is unbounded and hence not continuous.
 	\end{proof}
+	\bigbreak
+	
+	\textbf{$S$:} \\
+	The domain of $S$ is $L^1$ with the $L^1$ norm, and the codomain is $C(-\infty,\infty)$ under the sup-norm. We will show that $S$ is continuous.\\
+	\begin{proof}
+		Let $f \in L^1$. By definition we have that $\int \vert f \vert d\mu$ is finite. 
+		\begin{align*}
+			\norm{Sf} & = \sup\limits_{x \in \RR} \Bigg \vert \int\limits_a^x f d\mu \Bigg \vert \\
+			& \leq \sup\limits_{x \in \RR} \int\limits_a^x \vert f \vert d\mu \text{ \ \ \ (by the triangle inequality)} \\
+			& = \int \vert f \vert d\mu \\
+			& = \norm{f}
+		\end{align*}
+		Thus $1$ is a bound of $S$ and $S$ is continuous.
+	\end{proof} \bigbreak
+	
+	\textbf{$I$:} \\
+	The domain of $I$ is $L^1$ with the $L^1$ norm and the codomain is $\RR$ under the absolute value norm. $I$ is continuous. \\
+	\begin{proof}
+		Let $f \in L^1$. By definition we have that $\int \vert f \vert d\mu$ is finite. 
+		\begin{align*}
+		\norm{If} & = \Bigg \vert \int f d\mu \Bigg \vert \\
+		& \leq \int \vert f \vert d\mu \text{\ \ \ (by the triangle inequality)} \\
+		& = \norm{f}
+		\end{align*}
+		Thus $1$ is a bound of $I$ and $I$ is continuous.
+	\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \problem{18.2 (BBT, ex 12:5.2)}
@@ -159,9 +185,23 @@ Verify that $p$ is a sublinear functional such that $\lim x\leq p(x)$. If we app
 		$$
 		-\epsilon = \frac{ -\epsilon - \dots	- \epsilon}{n} < \frac{(x_{N+1}-L) + \dots + (x_n-L)}{n} < \frac{ \epsilon + \dots	+ \epsilon}{n} = \epsilon
 		$$
-		Taking $\epsilon$ to zero we have that $\lim x = p(x)$. Thus $\lim x \leq p(x)$. 
+		Taking $\epsilon$ to zero we have that $\lim x = p(x)$. Thus $\lim x \leq p(x)$. \bigbreak
 		
-		\textbf{******************* the other stuff  ****************}
+		By the Hahn--Banach theorem, $\lim$ extends to a bounded linear functional $L \leq p$ on $\ell^\infty$. 
+		We would like to show that $L(x)\leq \limsup(x)$. We will first show that $p(x) \leq \limsup(x)$. This will be shown using the squeeze theorem. \bigbreak
+		
+		Suppose we are given $N \in \NN$. Then for all $n \geq N$, we have $x_n \leq \sup\limits_{n \geq N}(x_n)$ by definition. Then $\sum\limits_{i=1}^n x_n \leq \sum\limits_{i=1}^n \sup\limits_{n \geq N}(x_n) = n \sup\limits_{n \geq N}(x_n)$. Finally we have that $\tfrac{1}{n}\sum\limits_{i=1}^n x_n \leq \sup\limits_{n \geq N}(x_n)$ for all $N \in \NN$. Thus
+		$$
+		p(x) = \limsup\sum\limits_{i=1}^n x_n = \lim_{N \to \infty} \sup\limits_{n \geq N}\sum\limits_{i=1}^n x_n \leq \lim_{N \to \infty} \sup\limits_{n \geq N} x_n = \limsup x_n
+		$$
+		Lastly, for every $x \in \ell^\infty$, it is the case that $-x \in \ell^\infty$ and thus
+		\begin{align*}
+			L(-x) & \leq \limsup(-x) \\
+			-L(x) & \leq \limsup(-x) \text{\ \ (since $L$ is a linear functional)} \\
+			-L(x) & \leq -\liminf(x) \\
+			\liminf(x) & \leq L(x)
+		\end{align*}
+		Thus we have that $\liminf x \leq L(x) \leq \limsup x$.
 	\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -169,6 +209,8 @@ Verify that $p$ is a sublinear functional such that $\lim x\leq p(x)$. If we app
 Ex 18.3. Let $\RR^d$ be equipped with any norm that makes it into a normed vector space. Show that every linear functional on $\RR^d$ is continuous.
 
 	\begin{proof}
-		We know that every linear functional on $\RR^d$ is a dual vector, so it is sufficient to show that any dual vector $T=[a_1\ a_2\ \dots a_d]$ is continuous. 
+		We know that every linear functional on $\RR^d$ is a dual vector, so it is sufficient to show that any dual vector $T=[a_1\ a_2\ \dots a_d]$ is continuous. \bigbreak
+		
+		I'm not sure how to do this proof. I can try to show that it's bounded. I suspect that $\vert Tx \vert \leq \norm{T}\norm{x}$ where $\norm{T}$ refers to the norm of the vector with the same values as the dual vector T, but I'm not sure how to show it. If this were the standard euclidian norm then it would be much more approachable. This looks similar to the Cauchy Schwartzs inequality, but we only have that for bounded linear operators.
 	\end{proof}
 \end{document}
