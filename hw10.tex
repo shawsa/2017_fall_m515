@@ -111,5 +111,21 @@
 		
 		Suppose that there were a constant $M$ such that $\norm{\cdot}_\infty$ is bounded by $M\norm{\cdot}_1$. Then consider the function $f(x) = x^{M} \in C[0,1]$. Then $\norm{f}_\infty = 1$, but $\norm{f}_1 = \tfrac{1}{1+M}$ so $M \norm{f}_1 = \tfrac{1}{1+M} < 1 = \norm{f}_\infty$.
 	\end{proof}
-
+	
+	This does not violate the corollary to the Open Mapping Theorem because $C[0,1]$ under the $L^1$ norm is not a Banach Space. Consider the sequence of functions $f_n(x) = x^n$. This sequence converges pointwise to 
+	$$
+	f(x) =
+	\begin{cases}
+		0 \text{\ \ if $x<1$}\\
+		1 \text{\ \ if $x=1$}
+	\end{cases}
+	$$
+	Further, this sequence is Cauchy. Let $\epsilon > 0$. Pick $N$ to be an integer greater than $1/\epsilon$. Then for any $n,m>N$
+	\begin{align*}
+		\norm{x^n - x^m}_1 & = \int_0^1\vert x^n - x^m \vert dx \\
+		& = \int_0^1 x^n - x^m dx \text{\ \ \ (WLOG $m>n$)}\\
+		& = \tfrac{1}{n+1} - \tfrac{1}{m+1} \\
+		& < \tfrac{1}{n+1} < \tfrac{1}{N} < \epsilon
+	\end{align*}
+	Since this sequence is Cauchy, but the pointwise limit is not in $C[0,1]$ this is not a Banach Space and the Open Mapping Theorm is not contradicted. 
 \end{document}
