@@ -86,20 +86,30 @@
 {\large \textbf{HW 10}}\bigbreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\problem{Ex 19.1.} Show that $|T|$ is equal to $\sup\{|Tx|:|x|\leq1\}$.
+\problem{Ex 19.1.} Show that $\norm{T}$ is equal to $\sup\{\norm{Tx}:\norm{x}\leq1\}$. \bigbreak
 
 
 \bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\problem{Ex 19.3 (BBT, ex 17:7.5).} If $X,Y$ are Banach spaces and $T\in B(X,Y)$, show that $(T^*\phi)(x)=\phi(Tx)$ defines an element of $B(Y^*,X^*)$ such that $|T^*|=|T|$.
+\problem{Ex 19.3 (BBT, ex 17:7.5).} If $X,Y$ are Banach spaces and $T\in B(X,Y)$, show that $(T^*\phi)(x)=\phi(Tx)$ defines an element of $B(Y^*,X^*)$ such that $\norm{T^*}=\norm{T}$. \bigbreak
 
 \bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\problem{Ex 19.5.} Complete the proof of Corollary 19.4(b) of the notes: If $Y$ is closed in $X$ and $z\notin Y$, then there exists $\phi\in X^*$ such that $\phi(Y)=0$, $\phi(z)\neq0$, and $|\phi|=1$.
+\problem{Ex 19.5.} Complete the proof of Corollary 19.4(b) of the notes: If $Y$ is closed in $X$ and $z\notin Y$, then there exists $\phi\in X^*$ such that $\phi(Y)=0$, $\phi(z)\neq0$, and $\norm{\phi}=1$. \bigbreak
 
 \bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\problem{Ex 20.1.} Give an example of a function from $\RR$ to $\RR$ which has a closed graph but is not continuous. Give an example of function from $\RR$ to $\RR$ which is continuous and surjective but not open. Is it possible to give a bijective example?
-Ex 20.2 (BBT, ex 12:13.2). Equip the space $C[0,1]$ with both the $L^1$ norm and the supremum norm. Show that the $L^1$ norm is bounded by a constant times the supremum norm. Show that the reverse is not true. Explain why the two results do not contradict the corollary to the open mapping theorem.
+\problem{Ex 20.1.} Give an example of a function from $\RR$ to $\RR$ which has a closed graph but is not continuous. Give an example of function from $\RR$ to $\RR$ which is continuous and surjective but not open. Is it possible to give a bijective example? \bigbreak
+
+
+\bigbreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{Ex 20.2 (BBT, ex 12:13.2).} Equip the space $C[0,1]$ with both the $L^1$ norm and the supremum norm. Show that the $L^1$ norm is bounded by a constant times the supremum norm. Show that the reverse is not true. Explain why the two results do not contradict the corollary to the open mapping theorem. \bigbreak
+
+	\begin{proof}
+		For any function $f \in C[0,1]$, define the constant function $g = \sup\limits_{x \in [0,1]}\{\vert f \vert \}$. Then $\norm{f}_\infty = \norm{g}_\infty$, but since $\vert f \vert  \leq g$, by monotonicity we have that $\norm{f}_1 \leq \norm{g}_1$. Thus $\norm{\cdot}_1$ is bounded by $1\norm{\cdot}_\infty$. \bigbreak
+		
+		Suppose that there were a constant $M$ such that $\norm{\cdot}_\infty$ is bounded by $M\norm{\cdot}_1$. Then consider the function $f(x) = x^{M} \in C[0,1]$. Then $\norm{f}_\infty = 1$, but $\norm{f}_1 = \tfrac{1}{1+M}$ so $M \norm{f}_1 = \tfrac{1}{1+M} < 1 = \norm{f}_\infty$.
+	\end{proof}
 
 \end{document}
