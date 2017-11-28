@@ -88,10 +88,50 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \problem{Ex 19.1.} Show that $\norm{T}$ is equal to $\sup\{\norm{Tx}:\norm{x}\leq1\}$. \bigbreak
 
+	\begin{proof}
+		Let $S = \sup\{\norm{Tx}:\norm{x}\leq1\}$. Then notice that
+		\begin{align*}
+			\sup\{\norm{Tx}:\norm{x}\leq1\} & \leq \sup\{\norm{T}\norm{x}:\norm{x}\leq1\} \\
+			& \leq \sup\{\norm{T}:\norm{x}\leq1\} \\
+			= \norm{T}
+		\end{align*}
+		Thus $S \leq \norm{T}$. \bigbreak
+		Let $x \in X$ (assume $x \neq 0$). Then $\norm{\tfrac{1}{\norm{x}}x} = 1$. So by definition 
+		\begin{align*}
+			\norm{T\tfrac{1}{\norm{x}}x} & \leq S \\
+			\tfrac{1}{\norm{x}} \norm{Tx} & \leq S \\
+			\norm{Tx} & \leq S \norm{x} \\
+		\end{align*}
+		Thus $S$ is a bound of $T$ and by definition $\norm{T} \leq S$. \bigbreak
+		
+		Thus $\norm{T} = \sup\{\norm{Tx}:\norm{x}\leq1\}$.		
+	\end{proof}
+
 
 \bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \problem{Ex 19.3 (BBT, ex 17:7.5).} If $X,Y$ are Banach spaces and $T\in B(X,Y)$, show that $(T^*\phi)(x)=\phi(Tx)$ defines an element of $B(Y^*,X^*)$ such that $\norm{T^*}=\norm{T}$. \bigbreak
+
+	\begin{proof}
+		First let $\phi \in Y^*$. Then for any $x \in X$, $Tx \in Y$ and is thus in the domain of $\phi$. So $T^*: Y^* \to X^*$. \bigbreak
+		
+		Let $\phi, \gamma \in Y^*$. Then 
+		\begin{align*}
+			\big(T^*(\phi + \gamma) \big)(x) & = (\phi + \gamma)(Tx) \\
+			& = \phi(Tx) + \gamma(Tx) \\
+			& = (T^*\phi)(x) + (T^*\gamma)(x) \\
+			& = \big[(T^*\phi)+ (T^*\gamma)\big](x)
+		\end{align*}
+		Let $c$ be a scalar. Then
+		\begin{align*}
+			\big( T^*(c\phi) \big)(x) &= (c\phi)(Tx) \\
+			& = c (\phi(Tx)) \\
+			& = c(T^* \phi)(x)
+		\end{align*}
+		We have shown that $T*$ is a linear operator. \bigbreak
+		
+		
+	\end{proof}
 
 \bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -101,6 +141,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \problem{Ex 20.1.} Give an example of a function from $\RR$ to $\RR$ which has a closed graph but is not continuous. Give an example of function from $\RR$ to $\RR$ which is continuous and surjective but not open. Is it possible to give a bijective example? \bigbreak
 
+	The function 
+	$$
+	f(x) = \begin{cases}
+		1/x \text{\ \ \ if $x \neq 0$} \\
+		0 \text{\ \ \ if $x = 0$}
+	\end{cases}
+	$$
+	Has a closed graph but is not continuous. \bigbreak
+	
+	The function $f: \RR \to \RR$ given by $f(x) = x^2(x-1)$ is continuous and surjective, however $f\big( (0,1) \big) = [-\tfrac{4}{27},0)$ and thus $f$ is not open. \bigbreak
+	
+	It is not possible to give a bijective example. It is a theorem from Analysis/Topology that continuous bijections from $\RR$ to $\RR$ have continuous inverses. Since the inverse would be continuous, the function must be open. 
 
 \bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
