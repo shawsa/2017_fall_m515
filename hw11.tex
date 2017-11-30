@@ -1,0 +1,151 @@
+\documentclass[12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math
+\usepackage{fancyhdr} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage{dsfont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros
+\usepackage{calc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands and Custom Variables	
+\newcommand{\problem}[1]{\hspace{-4 ex} \large \textbf{Problem #1} }
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\sint}{\text{s}\kern-5pt\int}
+\newcommand{\powerset}{\mathcal{P}}
+\renewenvironment{proof}{\hspace{-4 ex} \emph{Proof}:}{\qed}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+%\doublespacing
+\allowdisplaybreaks
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Shaw \space \thepage}
+\setlength\parindent{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Code
+\usepackage{listings}
+\usepackage{courier}
+\lstset{
+	language=Python,
+	showstringspaces=false,
+	formfeed=newpage,
+	tabsize=4,
+	commentstyle=\itshape,
+	basicstyle=\ttfamily,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Images
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{float}
+
+%tikz
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Hyperlinks
+%\usepackage{hyperref}
+%\hypersetup{
+%	colorlinks=true,
+%	linkcolor=blue,
+%	filecolor=magenta,      
+%	urlcolor=cyan,
+%}
+
+\begin{document}
+	\thispagestyle{empty}
+	
+	\begin{flushright}
+		Sage Shaw \\
+		m515 - Fall 2017 \\
+		\today
+	\end{flushright}
+	
+{\large \textbf{HW 11}}\bigbreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{Ex 21.3} Prove Holder's inequality for $p=1$ and $q=\infty$.
+
+	\begin{proof}
+		Let $f \in L^1$ and $g \in L^\infty$. By definition $g$ is bounded and $\norm{g}_\infty$ is the magnitude of the least upper bound of $g$. Then
+		\begin{align*}
+			\int \vert fg \vert & \leq \int \vert f \norm{g}_\infty \vert \\
+			& = \norm{g}_\infty \int \vert f \vert \\
+			& = \norm{g}_\infty \norm{f}_1
+		\end{align*}
+		Thus $fg$ is absolutely integrable and Holder's inequality holds.
+	\end{proof}
+
+	\bigbreak
+Prove that $L^\infty$ is a Banach space with the norm $\norm{\cdot}_\infty$. \bigbreak
+
+	\begin{proof}
+		Let $f_n \in L^\infty$ be a sequence of functions that is Cauchy with respect to the norm $\norm{\cdot}_\infty$. First we will justify that $\{f_n\}$ converges pointwise and we will call the limit $f$. Let $\epsilon > 0$ be given and choose $N$ such that for any $n,m > N$ it is the case that $\norm{f_n - f_m}_\infty < \epsilon$. Let $x$ be in the domain. Then $\vert f_n(x) - f_m(x) \vert \leq \norm{f_n - f_m}_\infty < \epsilon$. So the sequence $\{f_n(x)\}$ is a Cauchy sequence of real numbers and is therefore convergent. Define $f(x) = \lim_{n \to \infty} f_n(x)$. Also, note that since $N$ is not dependent on $x$, this convergence is uniform.  \bigbreak
+		
+		Furthermore we will show that $\norm{f}_\infty$ is bounded. Let $\epsilon > 0$ be given and choose $N$ such that for any $n> N$ and any $x$, we have that $\vert f(x) - f_n(x)\vert < \epsilon$. Since this is true for all $x$ we can say that $\norm{f- f_n}_\infty \leq \epsilon$. Then
+		\begin{align*}
+			\norm{f}_\infty & = \norm{f - (f_N - f_N)}_\infty  \\
+			& \leq \vert \norm{f - f_N}_\infty - \norm{f_N}_\infty \vert \\
+			& \leq \epsilon + \norm{f_N}_\infty
+		\end{align*}
+		Thus Since $f_N \in L^\infty$ we have that $f$ is bounded and thus $f \in L^\infty$ and $L^\infty$ is complete. We conclude that $L^\infty$ is a Banach Space with the norm $\norm{\cdot}_\infty$. 
+	\end{proof}
+
+\bigbreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{Ex 22.1 (BBT, ex 13:6.1)} Let $g\in L^1[0,1]$. Show that the map $f\mapsto\int fg$ is a bounded linear functional on $L^\infty[0,1]$.
+
+	\begin{proof}
+		Since integration is linear this is obviously a linear functional. Let $f \in L^\infty$. Then
+		\begin{align*}
+			\left \vert \int fg \right \vert & \leq \left \vert \int \norm{f}_\infty g \right \vert \\
+			& = \norm{f}_\infty \left \vert \int g \right \vert  \\
+			& \leq \norm{f}_\infty \int \vert g \vert \\
+			& = \norm{f}_\infty \norm{g}_1
+		\end{align*}
+		Thus our functional is bounded by $\norm{g}_1$.
+	\end{proof}
+
+\bigbreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{Ex 22.2 (BBT, ex 13:6.2).} Show that there is a nonzero bounded linear functional on $L^\infty[0,1]$ that vanishes on the (closed) subspace of continuous functions. \bigbreak
+
+	\begin{proof}
+		The functional on $L^\infty [0, 1]$ will be the distance of the step discontinuity at the point $\tfrac{1}{2}$ from left to right. \\
+		Formally we will define the functional $\phi: L^\infty [0, 1] \to \RR$ by
+		$$
+		\phi(f) = \inf_{\delta > 0} \Big \{ \sup_{x \in (.5, .5 + \delta)} \{ f(\tfrac{1}{2}) - f(x) \} \Big \}
+		$$
+		For continuous functions (in particular they are continuous at $\tfrac{1}{2}$) this value is zero, by definition. Since $f$ is bounded, the largest that $\phi$ could scale it, is to double it (if the function jumped up from the negative bound to the positive bound at $\tfrac{1}{2}$). Clearly $\phi(cf) = c\phi(f)$. \\
+		$\phi(f + g) = \phi(f) + \phi(g)$ is harder to justify formaly, but is true. \\
+		Lastly note that $\phi(\chi_{(.5,1)}) = 1$ so $\phi$ is non-zero.
+	\end{proof}
+
+\bigbreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{Ex 22.3 (BBT, ex 13:6.3)} Show that there is a bounded linear functional on $L^\infty[0,1]$ that is not of the form $f\mapsto\int fg$ for any $g\in L^1[0,1]$.
+
+\end{document}
