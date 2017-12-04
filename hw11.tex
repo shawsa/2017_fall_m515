@@ -121,9 +121,13 @@ Prove that $L^\infty$ is a Banach space with the norm $\norm{\cdot}_\infty$. \bi
 	\begin{proof}
 		Since integration is linear this is obviously a linear functional. Let $f \in L^\infty$. Then
 		\begin{align*}
-			\left \vert \int fg \right \vert & \leq \left \vert \int \norm{f}_\infty g \right \vert \\
-			& = \norm{f}_\infty \left \vert \int g \right \vert  \\
-			& \leq \norm{f}_\infty \int \vert g \vert \\
+%			\left \vert \int fg \right \vert & \leq \left \vert \int \norm{f}_\infty g \right \vert \\
+%			& = \norm{f}_\infty \left \vert \int g \right \vert  \\
+%			& \leq \norm{f}_\infty \int \vert g \vert \\
+%			& = \norm{f}_\infty \norm{g}_1
+			\left \vert \int fg \right \vert & \leq  \int  \vert fg \vert \text{\ \ (triangle inequality)}\\
+			& = \int \vert f \vert \vert g \vert \\
+			& \leq \int \norm{f}_\infty \vert g \vert \text{\ \ (monotonicity)}\\
 			& = \norm{f}_\infty \norm{g}_1
 		\end{align*}
 		Thus our functional is bounded by $\norm{g}_1$.
@@ -134,18 +138,34 @@ Prove that $L^\infty$ is a Banach space with the norm $\norm{\cdot}_\infty$. \bi
 \problem{Ex 22.2 (BBT, ex 13:6.2).} Show that there is a nonzero bounded linear functional on $L^\infty[0,1]$ that vanishes on the (closed) subspace of continuous functions. \bigbreak
 
 	\begin{proof}
-		The functional on $L^\infty [0, 1]$ will be the distance of the step discontinuity at the point $\tfrac{1}{2}$ from left to right. \\
-		Formally we will define the functional $\phi: L^\infty [0, 1] \to \RR$ by
-		$$
-		\phi(f) = \inf_{\delta > 0} \Big \{ \sup_{x \in (.5, .5 + \delta)} \{ f(\tfrac{1}{2}) - f(x) \} \Big \}
-		$$
-		For continuous functions (in particular they are continuous at $\tfrac{1}{2}$) this value is zero, by definition. Since $f$ is bounded, the largest that $\phi$ could scale it, is to double it (if the function jumped up from the negative bound to the positive bound at $\tfrac{1}{2}$). Clearly $\phi(cf) = c\phi(f)$. \\
-		$\phi(f + g) = \phi(f) + \phi(g)$ is harder to justify formaly, but is true. \\
-		Lastly note that $\phi(\chi_{(.5,1)}) = 1$ so $\phi$ is non-zero.
+		Consider the step fuction $g = \chi_{\RR^+} \in L^\infty$. For any continuous function $f \in L^\infty$ it's easily seen that $\norm{f - g}_\infty \geq \tfrac{1}{2}$. So if $Y$ is the closed subspace of continuous functions then $dist(g, Y) = \tfrac{1}{2} > 0$, and by Theorem 12.38 (Bruckner) we are given that there exists a functional $x^* \in (L^\infty)^*$ such that $\norm{x^*} = 1$, $x^*(g) = \tfrac{1}{2}$, and $x^*(g)=0$ for any continuous function $g$. Thus functional is bounded, nonzero (since it maps our step function elsewhere), and it vanishes on the subspace of continuous functions.
 	\end{proof}
+
+%	\begin{proof}
+%		The functional on $L^\infty [0, 1]$ will be the distance of the step discontinuity at the point $\tfrac{1}{2}$ from left to right. \\
+%		Formally we will define the functional $\phi: L^\infty [0, 1] \to \RR$ by
+%		$$
+%		\phi(f) = \inf_{\delta > 0} \Big \{ \sup_{x \in (.5, .5 + \delta)} \{ f(\tfrac{1}{2}) - f(x) \} \Big \}
+%		$$
+%		For continuous functions (in particular they are continuous at $\tfrac{1}{2}$) this value is zero, by definition. Since $f$ is bounded, the largest that $\phi$ could scale it, is to double it (if the function jumped up from the negative bound to the positive bound at $\tfrac{1}{2}$). Clearly $\phi(cf) = c\phi(f)$. \\
+%		$\phi(f + g) = \phi(f) + \phi(g)$ is harder to justify formaly, but is true. \\
+%		Lastly note that $\phi(\chi_{(.5,1)}) = 1$ so $\phi$ is non-zero.
+%	\end{proof}
 
 \bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\problem{Ex 22.3 (BBT, ex 13:6.3)} Show that there is a bounded linear functional on $L^\infty[0,1]$ that is not of the form $f\mapsto\int fg$ for any $g\in L^1[0,1]$.
+\problem{Ex 22.3 (BBT, ex 13:6.3)} Show that there is a bounded linear functional on $L^\infty[0,1]$ that is not of the form $f\mapsto\int fg$ for any $g\in L^1[0,1]$. \bigbreak
+
+	\begin{proof}
+		Let $\phi$ be a nonzero boudned linear functional on $L^\infty[0,1]$ that vanishes on the (closed) subspace of continuous functions. Such a functional was shown to exist in the previous problem. \bigbreak
+		
+		Suppose there existed $g \in L^1[0,1]$ such that $\phi(f) = \int fg$. Since the continuous functions are dense in $L^1[0,1]$ we can approximate $g$ with continous funtions. Let $f_n$ be a sequence of continuous functions in $L^1[0,1]$ such that $f_n \to g$ (both in the norm, and pointwise). Then 
+		$$
+		0 = \lim 0 = \lim \int f_n g = \int g^2
+		$$
+		Since $0 \leq g^2$ we can say that $g^2 = 0$ almost everywhere, and hence $g = 0$ almost everywhere. But then $\phi$ would be the zero functional and we have a contradiction. \bigbreak
+		
+		Thus $\phi$ is such a bounded linear functional not of the form $f \mapsto \int fg$.
+	\end{proof}
 
 \end{document}
